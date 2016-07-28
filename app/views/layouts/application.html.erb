@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
     <title>
@@ -38,22 +38,21 @@
 
         <ul class="nav navbar-nav">
             <li><%= link_to '/' do %>
-<i class="glyphicon glyphicon-home"></i> Home
-<% end %></li>
-<li><%= link_to new_snip_path do %>
-<i class="glyphicon glyphicon-scissors"></i> New snip?
-<% end %></li>
+            <i class="glyphicon glyphicon-home"></i> Home
+            <% end %></li>
+            <li><%= link_to new_snip_path do %>
+            <i class="glyphicon glyphicon-scissors"></i> New snip?
+            <% end %></li>
             <li><%= link_to new_volt_path do %>
             <i class="glyphicon glyphicon-flash"></i> New volt?
             <% end %></li>
         <% unless user_signed_in? %>
-            end
-            <li class="<%= 'active' if current_page?('/users/sign_up') %>">
-                <%=link_to new_user_registration_path do%>
+            <li class="<%= '' if current_page?('/users/sign_up') %>">
+                <%= link_to new_user_registration_path do %>
             <i class="glyphicon glyphicon-edit"></i> Sign up?
             <% end %></li>
-            <li class="<%= 'active' if current_page?('/users/sign_up') %>">
-                <%=link_to new_user_session_path do%>
+            <li class="<%= '' if current_page?('/users/sign_up') %>">
+                <%= link_to new_user_session_path do %>
             <i class="glyphicon glyphicon-user"></i> Log in?
             <% end %></li>
         <% end %>

@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.feature "Users can create new snips" do
+    let(:user) {FactoryGirl.create(:user)}
     before do
+        login_as(user)
         visit "/"
         click_link "New snip?"
     end
@@ -11,9 +13,13 @@ RSpec.feature "Users can create new snips" do
         fill_in "Name", with: "Hello whirled"
         fill_in "Summary", with: "My first program - a parody"
         click_button "Make snip?"
-# needs to be manually tested for now as depends on the browser running JS
-        #expect(page).to have_content "Snip made"
 
+
+# needs to be manually tested for now as depends on the browser running JS
+        # expect(page).to have_content "Snip made"
+        # expect(page).to have_content "Author: #{user.email}"
+
+        #expect(page).to have_content "Snip made"
         #snip = Snip.find_by(name: "Hello whirled")
         #expect(page.current_url).to eq snip_url(snip)
 

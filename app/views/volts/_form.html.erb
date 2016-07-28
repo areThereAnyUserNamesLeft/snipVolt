@@ -20,6 +20,11 @@
             <%= f.select :default_licence, options_for_select(["Public (for all to see & reuse)",'Private - for yor eyes only',"GPL - Gnu public licence","BSD","MIT"], :selected => f.object.default_licence), :class => "form-control input-lg" %>
             <span class="help-block">Set the license for all snips contained in this volt</span>
         </div>
+        <div class="clearfix">
+            <%= button_tag(type: "submit", class: "pull-right btn-lg btn-success", name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
+            <span class="glyphicon glyphicon-floppy-disk"></span> Make volt?
+            <% end %>
+        </div>
     </div>
 
     <div class="footer">
@@ -40,11 +45,6 @@
                 </ul>
             </div>
         <% end %>
-        <div class="clearfix">
-            <%= button_tag(type: "submit", class: "pull-right btn-lg btn-success", name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
-              <span class="glyphicon glyphicon-floppy-disk"></span> Make volt?
-            <% end %>
-        </div>
 
 
             <% end %>

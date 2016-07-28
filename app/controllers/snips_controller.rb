@@ -32,7 +32,8 @@ class SnipsController < ApplicationController
         redirect_to snips_path
     end
     def create
-        @snip = Snip.new snip_params
+        @snip = Snip.new(snip_params)
+        @snip.author = current_user
 
          if @snip.save
             flash[:notice] = "Snip made"

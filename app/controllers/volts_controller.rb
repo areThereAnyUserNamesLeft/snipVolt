@@ -2,7 +2,7 @@ class VoltsController < ApplicationController
     before_action :set_volt, only: [:show, :edit, :update, :destroy]
 
     def index
-        
+
     end
     def new
         @volt = Volt.new
@@ -33,6 +33,7 @@ class VoltsController < ApplicationController
     end
     def create
         @volt = Volt.new volt_params
+        @volt.author = current_user
 
          if @volt.save
             flash[:notice] = "Volt made"

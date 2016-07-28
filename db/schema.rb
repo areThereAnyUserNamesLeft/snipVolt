@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727123050) do
+ActiveRecord::Schema.define(version: 20160728130625) do
 
   create_table "snips", force: :cascade do |t|
     t.string   "snipOwner"
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(version: 20160727123050) do
     t.string   "code"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "author_id"
   end
+
+  add_index "snips", ["author_id"], name: "index_snips_on_author_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -54,8 +57,10 @@ ActiveRecord::Schema.define(version: 20160727123050) do
     t.integer  "snips_id_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "author_id"
   end
 
+  add_index "volts", ["author_id"], name: "index_volts_on_author_id"
   add_index "volts", ["members_id_id"], name: "index_volts_on_members_id_id"
   add_index "volts", ["snips_id_id"], name: "index_volts_on_snips_id_id"
 

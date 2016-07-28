@@ -1,4 +1,5 @@
 <% title(@volt.name, "snipVolt") %>
+<div class="clearfix">
 <div class="btn-group pull-right">
 <%= link_to snip_path(@volt), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
     <i class="glyphicon glyphicon-trash"></i> Delete volt?
@@ -7,24 +8,40 @@
     <i class="glyphicon glyphicon-scissors"></i> Add snip?
 <% end %>
 </div>
+</div>
 
 <header>
     <h1><%= @volt.name %><small> - <%= @volt.project_name %></small></h1>
 </header>
-<div class="alert alert-info">
-    Awating functionality to loop through snips
-    <!--
-# <#%= :snips_id.each do %>
-#     <h2><#%= link_to snip.name, snip %></h2>
-#     <p><#%= snip.summary %></p>
-# <#% end %>-->
-</div>
-<p>Licence of all snips in volt: <%= @volt.default_licence %></p>
-
+<table id="attributes">
+    <tr>
+        <th>Licence</th>
+    <td><%= @volt.default_licence %></td>
+    </tr>
+    <tr>
+        <th>Author</th>
+    <td><%= @volt.author.email %></td>
+    </tr>
+    <tr>
+        <th>Created</th>
+    <td><%= time_ago_in_words(@volt.created_at) %></td>
+    </tr>
+</table>
 <div class="clearfix">
 <%= link_to edit_volt_path(@volt), :class => "btn btn-lg btn-info pull-right" do %>
     <i class="glyphicon glyphicon-floppy-open"></i> Update volt?
 <% end %>
+<div class="alert alert-info">
+    Awating functionality to loop through snips
+<%#
+<%= :snips_id.each do %>
+      <%# <h2><%= link_to snip.name, snip %></h2>
+      <%# <p><%= snip.summary %></p>
+<%#  <% end %>
+</div>
+
+
+
 </div>
 
 <hr/>

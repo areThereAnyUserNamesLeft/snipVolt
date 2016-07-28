@@ -19,7 +19,22 @@
 <pre class="js-copycode">
     <%= @snip.code %>
 </pre>
-<p>Licence: <%= @snip.licence %></p>
+<table id="attributes">
+    <tr>
+        <th>Licence</th>
+    <td><%= @snip.licence %></td>
+    </tr>
+    <tr>
+        <th>Author</th>
+    <td><%= @snip.author.email %></td>
+    </tr>
+    <tr>
+        <th>Created</th>
+    <td><%= time_ago_in_words(@snip.created_at) %></td>
+    </tr>
+</table>
+
+
 <div class="clearfix">
 <div class="btn-group pull-right">
 <%= link_to edit_snip_path(@snip), :class => "btn btn-lg btn-info" do %>
@@ -31,9 +46,21 @@
 <hr/>
 <div id="snips">
     <% @snips.each do |snip| %>
-        <h2><%= link_to snip.name, snip %></h2>
-        <p><%= snip.summary %></p>
+        <% unless snip.id == @snip.id %>
+        <h2><%= link_to snip.name, snip %><small> - <%= snip.summary %></small></h2>
+
+
+        <div class="btn-group pull-right">
+        <%= link_to snip_path(snip), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-sm" do %>
+            <i class="glyphicon glyphicon-trash"></i> Delete snip?
+        <% end %>
+        <%= link_to edit_snip_path(snip), :class => "btn btn-sm btn-info" do %>
+            <i class="glyphicon glyphicon-floppy-open"></i> Update snip?
+        <% end %>
+        </div>
     <% end %>
+    <% end %>
+
     <script>
     function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
