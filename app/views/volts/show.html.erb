@@ -1,0 +1,30 @@
+<% title(@volt.name, "snipVolt") %>
+<div class="btn-group pull-right">
+<%= link_to snip_path(@volt), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
+    <i class="glyphicon glyphicon-trash"></i> Delete volt?
+<% end %>
+<%= link_to new_snip_path(@volt), :class => "btn btn-lg btn-success" do %>
+    <i class="glyphicon glyphicon-scissors"></i> Add snip?
+<% end %>
+</div>
+
+<header>
+    <h1><%= @volt.name %><small> - <%= @volt.project_name %></small></h1>
+</header>
+<div class="alert alert-info">
+    Awating functionality to loop through snips
+    <!--
+# <#%= :snips_id.each do %>
+#     <h2><#%= link_to snip.name, snip %></h2>
+#     <p><#%= snip.summary %></p>
+# <#% end %>-->
+</div>
+<p>Licence of all snips in volt: <%= @volt.default_licence %></p>
+
+<div class="clearfix">
+<%= link_to edit_volt_path(@volt), :class => "btn btn-lg btn-info pull-right" do %>
+    <i class="glyphicon glyphicon-floppy-open"></i> Update volt?
+<% end %>
+</div>
+
+<hr/>

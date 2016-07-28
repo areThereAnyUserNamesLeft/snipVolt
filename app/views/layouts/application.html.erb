@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    <% if content_for?(:title) %>
+            <%= yield(:title) %>
+        <% else %>
+            snipVolt
+        <% end %>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js"></script>
+  <style type="text/css" media="screen">
+
+    #editor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+
+        <% flash.each do |key, message| %>
+            <div class="alert alert-<%= key %>">
+                <%= message %>
+            </div>
+        <% end %>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav">
+            <li><%= link_to '/' do %>
+<i class="glyphicon glyphicon-home"></i> Home
+<% end %></li>
+<li><%= link_to new_snip_path do %>
+<i class="glyphicon glyphicon-scissors"></i> New snip?
+<% end %></li>
+            <li><%= link_to new_volt_path do %>
+            <i class="glyphicon glyphicon-flash"></i> New volt?
+            <% end %></li>
+        <% unless user_signed_in? %>
+            end
+            <li class="<%= 'active' if current_page?('/users/sign_up') %>">
+                <%=link_to new_user_registration_path do%>
+            <i class="glyphicon glyphicon-edit"></i> Sign up?
+            <% end %></li>
+            <li class="<%= 'active' if current_page?('/users/sign_up') %>">
+                <%=link_to new_user_session_path do%>
+            <i class="glyphicon glyphicon-user"></i> Log in?
+            <% end %></li>
+        <% end %>
+         </ul>
+         <div class="navbar-right">
+            <% if user_signed_in? %>
+
+                    <p class="navbar-text">
+                        Hello <i class="glyphicon glyphicon-user"></i> <%= current_user.email %>
+                    </p>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <%= link_to "Sign out?", destroy_user_session_path,
+                            method: :delete %>
+                        </li>
+                    </ul>
+            <% end %>
+            <div class=" img-responsive navbar-brand cleafix">
+                <a id="logo" href="/"><span class="text-hide">snipVolt</span><%= image_tag("sVOptimised.svg", :alt => "snipVolt logo", :class => "img-responsive", :style => "display:inline;") %></a>
+            </div>
+             </div>
+         </div>
+</nav>
+
+
+<div class="container">
+
+<div class="row">
+<div class="col-sm-2">
+</div>
+<div class="col-sm-8">
+
+
+<%= yield %>
+
+
+</div>
+<div class="col-sm-2"></div>
+
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8">
+
+    </div>
+<div class="col-sm-2">
+</div></div>
+
+
+</div>
+
+</div>
+</body>
+</html>

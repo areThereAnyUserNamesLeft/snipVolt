@@ -1,0 +1,56 @@
+<div class="form-group" style="padding:5%; height:100%;background:#f5f5f0;">
+    <%= form_for(volt) do |f| %>
+    <div class="row">
+        <div class="col-sm-12">
+            <%= f.label :name, class:"control-label" %><br/>
+            <%= f.text_field :name, :class => "form-control input-lg" %>
+            <span class="help-block">Name your volt...</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <%= f.label :project_name, class:"control-label" %><br/>
+            <%= f.text_field :project_name, :class => "form-control input-lg" %>
+            <span class="help-block">Name of your project...</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <%= f.label :default_licence, class:"control-label" %><br/>
+            <%= f.select :default_licence, options_for_select(["Public (for all to see & reuse)",'Private - for yor eyes only',"GPL - Gnu public licence","BSD","MIT"], :selected => f.object.default_licence), :class => "form-control input-lg" %>
+            <span class="help-block">Set the license for all snips contained in this volt</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="col-sm-12">
+
+            <% if volt.errors.any? %>
+<div id="error_explanation" class="alert alert-danger pull-left">
+                <h2> <%= pluralize(volt.errors.count, "error") %>
+                    volt not made because:
+                </h2>
+
+                <ul>
+                    <% volt.errors.full_messages.each do |msg| %>
+                    <li>
+                        <%= msg %>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+        <div class="clearfix">
+            <%= button_tag(type: "submit", class: "pull-right btn-lg btn-success", name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
+              <span class="glyphicon glyphicon-floppy-disk"></span> Make volt?
+            <% end %>
+        </div>
+
+
+            <% end %>
+        </div>
+
+    </div>
+    <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+</div>

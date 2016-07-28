@@ -1,0 +1,93 @@
+<% title(@snip.name, "snipVolt") %>
+<div class="btn-group pull-right">
+<%= link_to snip_path(@snip), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
+    <i class="glyphicon glyphicon-trash"></i> Delete snip?
+<% end %>
+<%= link_to new_snip_path(@snip), :class => "btn btn-lg btn-success" do %>
+    <i class="glyphicon glyphicon-scissors"></i> New snip?
+<% end %>
+</div>
+
+<header>
+    <h1><%= @snip.name %><small> - <%= @snip.summary %></small></h1>
+</header>
+
+<p>
+    <%= @snip.summary %>
+</p>
+
+<pre class="js-copycode">
+    <%= @snip.code %>
+</pre>
+<p>Licence: <%= @snip.licence %></p>
+<div class="clearfix">
+<div class="btn-group pull-right">
+<%= link_to edit_snip_path(@snip), :class => "btn btn-lg btn-info" do %>
+    <i class="glyphicon glyphicon-floppy-open"></i> Update snip?
+<% end %>
+<button class="js-textareacopybtn btn btn-success btn-lg"><i class="glyphicon glyphicon-copy"></i> Copy code to clipboard?</button>
+</div>
+</div>
+<hr/>
+<div id="snips">
+    <% @snips.each do |snip| %>
+        <h2><%= link_to snip.name, snip %></h2>
+        <p><%= snip.summary %></p>
+    <% end %>
+    <script>
+    function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+
+
+  // Place in top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
+
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
+};
+
+    var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+    copyTextareaBtn.addEventListener('click', function(event) {
+        var copyTextarea = document.querySelector('.js-copycode');
+        copyTextToClipboard(copyTextarea.innerHTML);
+    });
+
+
+
+    </script>
+    </div>
+
+</div>
