@@ -1,0 +1,19 @@
+
+<header>
+    <h1>Your volts</h1>
+</header>
+
+
+<div id="volts" class="container-fluid">
+
+    <% @volts.each do |volt| %>
+        <h2><%= link_to volt.name, volt %><small> <%= volt.project_name %></small></h2>
+        <div id="<%= 'snip' + volt.id.to_s %>" class="well">
+            <% volt.snips.each do |snip| %>
+
+                <h3><%= link_to snip.name, [:edit, volt, snip] %><small> <%= snip.summary %></small></h3>
+            <% end %>
+        </div>
+
+    <% end %>
+</div>

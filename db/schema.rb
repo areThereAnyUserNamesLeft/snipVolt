@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728130625) do
+ActiveRecord::Schema.define(version: 20160728164023) do
 
   create_table "snips", force: :cascade do |t|
     t.string   "snipOwner"
@@ -21,15 +21,17 @@ ActiveRecord::Schema.define(version: 20160728130625) do
     t.string   "summary"
     t.string   "readme"
     t.string   "licence"
-    t.string   "volt"
+    t.string   "volt_name"
     t.string   "voltOwner"
     t.string   "code"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "author_id"
+    t.integer  "volt_id"
   end
 
   add_index "snips", ["author_id"], name: "index_snips_on_author_id"
+  add_index "snips", ["volt_id"], name: "index_snips_on_volt_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -58,10 +60,12 @@ ActiveRecord::Schema.define(version: 20160728130625) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "author_id"
+    t.integer  "snip_id"
   end
 
   add_index "volts", ["author_id"], name: "index_volts_on_author_id"
   add_index "volts", ["members_id_id"], name: "index_volts_on_members_id_id"
+  add_index "volts", ["snip_id"], name: "index_volts_on_snip_id"
   add_index "volts", ["snips_id_id"], name: "index_volts_on_snips_id_id"
 
 end

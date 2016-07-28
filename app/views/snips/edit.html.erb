@@ -1,5 +1,6 @@
 <header>
-    <h1><%= @snip.name %><small> - <%= @snip.summary %></small></h1>
+    <h1><%= @volt.name %><small> - <%= @volt.project_name %></small></h1>
 </header>
+<h2>Editing snip - <small><%= @snip.name %></small></h2>
 
-<%= render "form", snip: @snip %>
+<%= render "form", volt: @volt, snip: @snip %>

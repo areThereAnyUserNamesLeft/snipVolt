@@ -1,5 +1,5 @@
 <div class="form-group" style="padding:5%; height:100%;background:#f5f5f0;">
-    <%= form_for(snip) do |f| %>
+    <%= form_for([@volt, @snip]) do |f| %>
     <div class="row">
         <div class="col-sm-12">
             <%= f.label :name, class:"control-label" %><br/>
@@ -44,8 +44,8 @@
             <span class="help-block">Set the license</span>
         </div>
         <div class="col-sm-4">
-            <%= f.label :volt, class:"control-label"  %><br/>
-            <%= f.text_field :volt, :class => "form-control input-lg" %>
+            <%= f.label :volt_name, class:"control-label"  %><br/>
+            <%= f.text_field :volt_name, :class => "form-control input-lg" %>
             <span class="help-block">Name of the volt you are putting this code in, by default you have access to your own volt</span>
         </div>
     </div>

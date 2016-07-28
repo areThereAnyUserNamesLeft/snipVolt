@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-    root "snips#index"
+    root "volts#index"
 
-    resources :snips
-    resources :volts
+
+    resources :volts do
+        resources :snips
+    end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

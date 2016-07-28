@@ -2,20 +2,16 @@ class VoltsController < ApplicationController
     before_action :set_volt, only: [:show, :edit, :update, :destroy]
 
     def index
-
+        @volts = Volt.all
+    end
+    def show
     end
     def new
         @volt = Volt.new
     end
-    def show
-
-        @volts = Volt.all
-    end
     def  edit
-
     end
     def update
-
         if @volt.update(volt_params)
             flash[:notice] = "Volt has been updated"
             redirect_to @volt
@@ -32,7 +28,7 @@ class VoltsController < ApplicationController
         redirect_to volts_path
     end
     def create
-        @volt = Volt.new volt_params
+        @volt = Volt.new(volt_params)
         @volt.author = current_user
 
          if @volt.save
@@ -40,13 +36,12 @@ class VoltsController < ApplicationController
             redirect_to @volt
 
         else flash.now[:alert] = "Volt not made"
-            render "new"
+        render "new"
         end
     end
     private
     def volt_params
-        params.require(:volt).permit( :name, :members_id, :project_name, :snips_id, :default_licence, :volt, :voltOwner, :code
-)
+        params.require(:volt).permit( :name, :members_id, :project_name, :snips_id, :default_licence, :volt, :volt_id)
     end
     def set_volt
         @volt = Volt.find(params[:id])

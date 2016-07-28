@@ -1,9 +1,9 @@
 <% title(@snip.name, "snipVolt") %>
 <div class="btn-group pull-right">
-<%= link_to snip_path(@snip), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
+<%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
     <i class="glyphicon glyphicon-trash"></i> Delete snip?
 <% end %>
-<%= link_to new_snip_path(@snip), :class => "btn btn-lg btn-success" do %>
+<%= link_to new_volt_snip_path, :class => "btn btn-lg btn-success" do %>
     <i class="glyphicon glyphicon-scissors"></i> New snip?
 <% end %>
 </div>
@@ -37,7 +37,7 @@
 
 <div class="clearfix">
 <div class="btn-group pull-right">
-<%= link_to edit_snip_path(@snip), :class => "btn btn-lg btn-info" do %>
+<%= link_to [:edit, @volt, @snip], :class => "btn btn-lg btn-info" do %>
     <i class="glyphicon glyphicon-floppy-open"></i> Update snip?
 <% end %>
 <button class="js-textareacopybtn btn btn-success btn-lg"><i class="glyphicon glyphicon-copy"></i> Copy code to clipboard?</button>
@@ -45,16 +45,16 @@
 </div>
 <hr/>
 <div id="snips">
-    <% @snips.each do |snip| %>
+    <% @volt.snips.each do |snip| %>
         <% unless snip.id == @snip.id %>
-        <h2><%= link_to snip.name, snip %><small> - <%= snip.summary %></small></h2>
+        <h2><%= link_to snip.name, volt_snip_path %><small> - <%= snip.summary %></small></h2>
 
 
         <div class="btn-group pull-right">
-        <%= link_to snip_path(snip), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-sm" do %>
+        <%= link_to [@volt, snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-sm" do %>
             <i class="glyphicon glyphicon-trash"></i> Delete snip?
         <% end %>
-        <%= link_to edit_snip_path(snip), :class => "btn btn-sm btn-info" do %>
+        <%= link_to [:edit, @volt, snip], :class => "btn btn-sm btn-info" do %>
             <i class="glyphicon glyphicon-floppy-open"></i> Update snip?
         <% end %>
         </div>
