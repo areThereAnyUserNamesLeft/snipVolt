@@ -1,0 +1,99 @@
+FFFF.......FF*****
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) SnipsHelper add some examples to (or delete) /home/drippydik/railsProjects/newBranch/snipvolt/snipVolt/spec/helpers/snips_helper_spec.rb
+     # Not yet implemented
+     # ./spec/helpers/snips_helper_spec.rb:14
+
+  2) VoltsHelper add some examples to (or delete) /home/drippydik/railsProjects/newBranch/snipvolt/snipVolt/spec/helpers/volts_helper_spec.rb
+     # Not yet implemented
+     # ./spec/helpers/volts_helper_spec.rb:14
+
+  3) Snip add some examples to (or delete) /home/drippydik/railsProjects/newBranch/snipvolt/snipVolt/spec/models/snip_spec.rb
+     # Not yet implemented
+     # ./spec/models/snip_spec.rb:4
+
+  4) User add some examples to (or delete) /home/drippydik/railsProjects/newBranch/snipvolt/snipVolt/spec/models/user_spec.rb
+     # Not yet implemented
+     # ./spec/models/user_spec.rb:4
+
+  5) Volt add some examples to (or delete) /home/drippydik/railsProjects/newBranch/snipvolt/snipVolt/spec/models/volt_spec.rb
+     # Not yet implemented
+     # ./spec/models/volt_spec.rb:4
+
+Failures:
+
+  1) SnipsController handles a missing  snip correctly
+     Failure/Error: get :show, id: "not-here"
+     ActionController::UrlGenerationError:
+       No route matches {:action=>"show", :controller=>"snips", :id=>"not-here"}
+     # ./spec/controllers/snips_controller_spec.rb:5:in `block (2 levels) in <top (required)>'
+
+  2) Users can delete snips successfully
+     Failure/Error: click_link "Hello Whirled"
+     Capybara::ElementNotFound:
+       Unable to find link "Hello Whirled"
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:44:in `block in find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/base.rb:85:in `synchronize'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:33:in `find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/actions.rb:27:in `click_link'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/session.rb:699:in `block (2 levels) in <class:Session>'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/dsl.rb:52:in `block (2 levels) in <module:DSL>'
+     # ./spec/features/deleting_snips_spec.rb:9:in `block (2 levels) in <top (required)>'
+
+  3) Users can edit existing snips with snip details
+     Failure/Error: click_link "Hello Whirled"
+     Capybara::ElementNotFound:
+       Unable to find link "Hello Whirled"
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:44:in `block in find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/base.rb:85:in `synchronize'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:33:in `find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/actions.rb:27:in `click_link'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/session.rb:699:in `block (2 levels) in <class:Session>'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/dsl.rb:52:in `block (2 levels) in <module:DSL>'
+     # ./spec/features/editing_snips_spec.rb:11:in `block (2 levels) in <top (required)>'
+
+  4) Users can edit existing snips with snip wrong details
+     Failure/Error: click_link "Hello Whirled"
+     Capybara::ElementNotFound:
+       Unable to find link "Hello Whirled"
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:44:in `block in find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/base.rb:85:in `synchronize'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:33:in `find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/actions.rb:27:in `click_link'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/session.rb:699:in `block (2 levels) in <class:Session>'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/dsl.rb:52:in `block (2 levels) in <module:DSL>'
+     # ./spec/features/editing_snips_spec.rb:11:in `block (2 levels) in <top (required)>'
+
+  5) Users can sign up when providing invalid attributes
+     Failure/Error: expect(page).to have_content "Password confirmation doesn't match Password"
+       expected to find text "Password confirmation doesn't match Password" in "Toggle navigation Home New volt? Sign up? Log in? snipVolt Sign up * Email * Password8 characters minimum * Password confirmationdoesn't match Password Log in"
+     # ./spec/features/sign_up_spec.rb:20:in `block (2 levels) in <top (required)>'
+
+  6) Users can view snips with snip details
+     Failure/Error: click_link "Hello Whirled"
+     Capybara::ElementNotFound:
+       Unable to find link "Hello Whirled"
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:44:in `block in find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/base.rb:85:in `synchronize'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/finders.rb:33:in `find'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/node/actions.rb:27:in `click_link'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/session.rb:699:in `block (2 levels) in <class:Session>'
+     # /var/lib/gems/2.3.0/gems/capybara-2.7.1/lib/capybara/dsl.rb:52:in `block (2 levels) in <module:DSL>'
+     # ./spec/features/viewing_snips_spec.rb:9:in `block (2 levels) in <top (required)>'
+
+1 deprecation warning total
+
+Finished in 5.79 seconds (files took 1.32 seconds to load)
+18 examples, 6 failures, 5 pending
+
+Failed examples:
+
+rspec ./spec/controllers/snips_controller_spec.rb:4 # SnipsController handles a missing  snip correctly
+rspec ./spec/features/deleting_snips_spec.rb:4 # Users can delete snips successfully
+rspec ./spec/features/editing_snips_spec.rb:14 # Users can edit existing snips with snip details
+rspec ./spec/features/editing_snips_spec.rb:20 # Users can edit existing snips with snip wrong details
+rspec ./spec/features/sign_up_spec.rb:17 # Users can sign up when providing invalid attributes
+rspec ./spec/features/viewing_snips_spec.rb:4 # Users can view snips with snip details
+

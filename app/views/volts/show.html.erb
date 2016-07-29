@@ -18,7 +18,7 @@
     </tr>
     <tr>
         <th>Author</th>
-    <td><%= @volt.author.email %></td>
+    <td><%= @volt.author.try(:email) %></td>
     </tr>
     <tr>
         <th>Created</th>

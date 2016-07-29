@@ -16,19 +16,19 @@ RSpec.feature "Users can create new volts" do
 
         fill_in "Name", with: "Hello whirled"
         fill_in "Project name", with: "My first program - a parody"
+        select "MIT", :from => "Default licence"
         click_button "Make volt?"
 
 
-# needs to be manually tested for now as depends on the browser running JS
-        # expect(page).to have_content "Snip made"
-        # expect(page).to have_content "Author: #{user.email}"
+#needs to be manually tested for now as depends on the browser running JS
+        expect(page).to have_content "Volt made"
+         expect(page).to have_content "Author #{user.email}"
 
-        #expect(page).to have_content "Snip made"
-        #snip = Snip.find_by(name: "Hello whirled")
-        #expect(page.current_url).to eq snip_url(snip)
+        snip = Snip.find_by(name: "Hello whirled")
 
-        #title = "Hello whirled - snipVolt"
-        #expect(page).to have_title title
+
+        title = "Hello whirled - snipVolt"
+        expect(page).to have_title title
     end
     scenario"when providing invalid attributes" do
         click_button "Make volt?"

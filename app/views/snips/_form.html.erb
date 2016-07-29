@@ -1,80 +1,71 @@
-<div class="form-group form-group-lg" style="padding:5%; height:100%;background:#f5f5f0;">
-    <%= form_for([@volt, @snip]) do |f| %>
-    <div class="row">
-        <div class="col-sm-12">
-            <%= f.label :name, class:"control-label" %><br/>
-            <%= f.text_field :name, :class => "form-control input-lg" %>
+<div class="form-group" style="padding:5%; height:100%;background:#f5f5f0;">
+    <%= simple_form_for ([@volt, @snip]) do |f| %>
+        <%= f.input :name, :class => "form-control input-lg" %>
             <span class="help-block">Name your snip...</span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <%= f.label :language, class:"control-label" %><br/>
-            <%= f.select :language, options_for_select(['Select Language','CSS',"SASS/SCSS","python2","python3","java","JavaScript","HTML","SQL","BASH/Shell","PHP","Perl","C#" ,"C++", "C"], :selected => f.object.language), class: "form-control input-lg" %>
-            <span class="help-block">Choose your language...</span>
-        </div>
-        <div class="col-sm-4">
-            <%= f.label :description, class:"control-label" %><br/>
-            <%= f.text_area :description, :rows => "5", :class => "form-control input-lg"  %>
-            <span class="help-block">Describe what it does in detail</span>
-        </div>
-        <div class="col-sm-4">
-            <%= f.label :summary, class:"control-label" %><br/>
-            <%= f.text_area :summary, :rows => "5", :class => "form-control input-lg"  %>
-            <span class="help-block">Summarize the snip - if your over a tweet's length (144 characters) then use the description to give detail</span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <%= f.label :code, class:"control-label" %><br/>
-            <div id="editor"><%= snip.code %></div>
-            <%= f.text_area :code, :rows => "15" , :id => "codebox" %>
+        <div class="row">
+            <div class="col-sm-12">
+
+
+
+            <div id="editor"><% if @snip.code = '' %>Your code goes here...<% else %><%= @snip.code %><% end %></div>
+            <p>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+                If you can see this then the text editor is broken!<br/>
+            </p>
+            </br/>
             <span class="help-block">Your magnificent snip!</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <%= f.label :readme, class:"control-label" %><br/>
-            <%= f.text_area :readme, :rows => "5", :class => "form-control input-lg"  %>
-            <span class="help-block">Detailed specs - e.g. dependencies, the stuff that you'll forget</span>
+    <%= f.input :language, :as => :select, :prompt => "choose a language", class: "form-control input-lg", collection: ["CSS","SASS/SCSS","python2","python3","java","JavaScript","HTML","SQL","BASH/Shell","PHP","Perl","C#" ,"C++", "C"] %>
+        <div style="visibility:hidden; height:0px">
+            <%= f.input :code, :as => :text, :input_html => { :cols => 50, :rows => 5 }, :readonly => true %>
         </div>
-        <div class="col-sm-4">
-            <%= f.label :licence, class:"control-label" %><br/>
-            <%= f.select :licence, options_for_select(["Public (for all to see & reuse)",'Private - for yor eyes only',"GPL - Gnu public licence","BSD","MIT"], :selected => f.object.licence), :class => "form-control input-lg" %>
-            <span class="help-block">Set the license</span>
-        </div>
-        <div class="col-sm-4">
-            <%= f.label :volt_name, class:"control-label"  %><br/>
-            <%= f.text_field :volt_name, :class => "form-control input-lg" %>
-            <span class="help-block">Name of the volt you are putting this code in, by default you have access to your own volt</span>
-        </div>
-    </div>
-    <div class="page-footer">
-        <div class="clearfix">
 
+            <span class="help-block">Choose your language...</span>
+        <%= f.input :description, :as => :text, :input_html => { :cols => 50, :rows => 5 }, :class => "form-control input-lg"  %>
+            <span class="help-block">Describe what it does in detail</span>
+        <%= f.input :summary,:as => :text, :input_html => { :cols => 50, :rows => 5 }, :class => "form-control input-lg"  %>
+            <span class="help-block">Summarize the snip - if your over a tweet's length (144 characters) then use the description to give detail</span>
+        <%= f.input :readme, :as => :text, :input_html => { :cols => 50, :rows => 5 }, :class => "form-control input-lg"  %>
+            <span class="help-block">Detailed specs - e.g. dependencies, the stuff that you'll forget</span>
+        <%= f.input :licence, :as => :select, :prompt => "choose a licence", :collection => ["Public (for all to see & reuse)",'Private - for yor yes only',"GPL - Gnu public licence","BSD","MIT"], :class => "form-control input-lg" %>
+            <span class="help-block">Set the license</span>
+
+
+    <div class="clearfix">
+        <% unless @snip.id != '' %>
             <%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
                 <i class="glyphicon glyphicon-trash"></i> Delete snip?
             <% end %>
-            <div class="button-group pull-right">
-                <a href="javascript:history.go(-1)" alt="cancel" class="btn btn-warning btn-lg" data-ripple-color="#fffe57">
-                    <i class="glyphicon glyphicon-menu-left"></i> Cancel
-                </a>
-            <%= button_tag(type: "submit", class: "btn btn-lg btn-success",name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
-              <i class="glyphicon glyphicon-floppy-disk"></i> Make snip?
-            <% end %>
-        </div>
-        </div>
+        <% else %>
+        <a href="javascript:history.go(-1)" alt="cancel" class="pull-left btn btn-warning btn-lg">
+            <i class="glyphicon glyphicon-menu-left"></i> Cancel
+        </a>
+        <% end %>
+        <%= f.button :button, class: "pull-right btn btn-lg btn-success btn-raised" do %>
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Make snip?
+        <% end %>
 
-        <div class="col-sm-12">
 
-            <% if snip.errors.any? %>
-<div id="error_explanation" class="alert alert-danger pull-left">
-                <h2> <%= pluralize(snip.errors.count, "error") %>
+            <% if @snip.errors.any? %>
+            <div id="error_explanation alert alert-warning pull-left">
+                <h2> <%= pluralize(@snip.errors.count, "error") %>
                     Snip not made because:
                 </h2>
-
                 <ul>
-                    <% snip.errors.full_messages.each do |msg| %>
+                    <% @snip.errors.full_messages.each do |msg| %>
                     <li>
                         <%= msg %>
                     </li>
@@ -82,18 +73,23 @@
                 </ul>
             </div>
         <% end %>
-    </div>
+
+
 
             <% end %>
-
         </div>
 
     </div>
     <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
-    
         var editor = ace.edit("editor");
+        editor.on("blur", function() {document.querySelector('#snip_code').value = editor.getValue();});
+
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/css");
         document.getElementById('editor').style.fontSize='16px';
+        document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();
+
     </script>
+</div>
+</div>

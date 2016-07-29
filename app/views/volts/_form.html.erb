@@ -1,31 +1,28 @@
 <div class="form-group input placeholder form-group-lg" style="padding:5%; height:100%;background:#f5f5f0;">
-    <%= form_for(volt) do |f| %>
+    <%= simple_form_for(volt) do |f| %>
     <div class="row">
-        <div class="col-sm-12">
-            <%= f.label :name, class:"control-label" %><br/>
-            <%= f.text_field :name, :class => "form-control input-lg" %>
+
+            <%= f.input :name, :class => "form-control input-lg" %>
             <span class="help-block">Name your volt...</span>
-        </div>
+
     </div>
     <div class="row">
-        <div class="col-sm-12">
-            <%= f.label :project_name, class:"control-label" %><br/>
-            <%= f.text_field :project_name, :class => "form-control input-lg" %>
+
+            <%= f.input :project_name, :class => "form-control input-lg" %>
             <span class="help-block">Name of your project...</span>
-        </div>
+
     </div>
     <div class="row">
-        <div class="col-sm-12">
-            <%= f.label :default_licence, class:"control-label " %><br/>
-            <%= f.select :default_licence, options_for_select(["Public (for all to see & reuse)",'Private - for yor eyes only',"GPL - Gnu public licence","BSD","MIT"], :selected => f.object.default_licence), :class => "form-control input-lg" %>
+        <%= f.input :default_licence, :as => :select, :prompt => "choose a licence", :collection => ["Public (for all to see & reuse)",'Private - for yor yes only',"GPL - Gnu public licence","BSD","MIT"], :class => "form-control input-lg" %>
+
             <span class="help-block">Set the license for all snips contained in this volt</span>
         </div>
         <div class="clearfix">
             <a href="javascript:history.go(-1)" alt="cancel" class="pull-left btn btn-warning btn-lg">
                 <i class="glyphicon glyphicon-menu-left"></i> Cancel
             </a>
-            <%= button_tag(type: "submit", class: "pull-right btn btn-lg btn-success", name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
-            <span class="glyphicon glyphicon-floppy-disk"></span> Make volt?
+            <%= f.button :button, class: "pull-right btn btn-lg btn-success btn-raised" do %>
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Make volt?
             <% end %>
         </div>
     </div>

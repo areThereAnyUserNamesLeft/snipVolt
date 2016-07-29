@@ -3,6 +3,7 @@ class SnipsController < ApplicationController
   before_action :set_volt
   before_action :set_snip, only: [:show, :edit, :update, :destroy]
 
+  
   def new
     @snip = @volt.snips.build
   end

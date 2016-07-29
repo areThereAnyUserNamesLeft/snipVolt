@@ -17,7 +17,7 @@ RSpec.feature "Users can sign up" do
     scenario"when providing invalid attributes" do
         fill_in "Password confirmation", with: "MarkyMarkAndTheFunkyOnes"
         click_button "Sign up"
-        expect(page).to have_content "Password confirmation doesn't match Password"
+        expect(page).to have_content "Password confirmationdoesn't match Password"
 
 
     end

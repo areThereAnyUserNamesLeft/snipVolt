@@ -2,8 +2,6 @@
 <header>
     <h1>Your volts</h1>
 </header>
-
-
 <div id="volts" class="container-fluid">
 
     <% @volts.each do |volt| %>
@@ -19,7 +17,7 @@
                     </tr>
                     <tr>
                         <th>Author</th>
-                    <td><%= volt.author.email %></td>
+                    <td><%= volt.author.try(:email) %></td>
                     </tr>
                     <tr>
                         <th>Created</th>
