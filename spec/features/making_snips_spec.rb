@@ -1,18 +1,22 @@
 require "rails_helper"
 
-RSpec.feature "Users can create new snips" do
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+RSpec.feature "Users can create new volts" do
     let(:user) {FactoryGirl.create(:user)}
     before do
         login_as(user)
         visit "/"
-        click_link "New snip?"
+        click_link "New volt?"
     end
 
-    scenario "with valid attributes" do
+    scenario "with valid attributes", js: true do
 
         fill_in "Name", with: "Hello whirled"
-        fill_in "Summary", with: "My first program - a parody"
-        click_button "Make snip?"
+        fill_in "Project name", with: "My first program - a parody"
+        click_button "Make volt?"
 
 
 # needs to be manually tested for now as depends on the browser running JS
@@ -27,8 +31,8 @@ RSpec.feature "Users can create new snips" do
         #expect(page).to have_title title
     end
     scenario"when providing invalid attributes" do
-        click_button "Make snip?"
-        expect(page).to have_content "Snip not made"
+        click_button "Make volt?"
+        expect(page).to have_content "Volt not made"
         expect(page).to have_content "can't be blank"
 
     end

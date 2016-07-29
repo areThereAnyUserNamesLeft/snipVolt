@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass', "~> 3.3"
 #code editor
 gem 'ace-rails-ap', '~> 4.0', '>= 4.0.2'
-#keeping this as don't use it but rails throws a wobbly if I remove it 
+#keeping this as don't use it but rails throws a wobbly if I remove it
 gem 'simple_form', "~> 3.1.0"
 
 
@@ -48,12 +48,18 @@ group :development, :test do
   gem "rspec-rails", "~> 3.2.1"
 end
 
+
 group :test do
     # capy for testing
-    gem "capybara", "~> 2.4"
+    gem "capybara"
     # So I can see the fun happening
     gem "factory_girl_rails", "~> 4.5"
-    gem 'selenium-webdriver', "~> 2.45"
+    # selenium-webdriver
+    gem 'selenium-webdriver', '~> 2.53', '>= 2.53.4'
+    # chromedriver-helper
+    gem "chromedriver-helper"
+    # database_cleaner
+    gem "database_cleaner", "~> 1.4"
 end
 
 
