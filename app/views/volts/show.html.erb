@@ -1,13 +1,11 @@
+<br/>
 <% title(@volt.name, "snipVolt") %>
 <div class="clearfix">
-<div class="btn-group pull-right">
+
 <%= link_to volt_path(@volt), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
     <i class="glyphicon glyphicon-trash"></i> Delete volt?
 <% end %>
-<%= link_to new_volt_snip_path(@volt), :class => "btn btn-lg btn-success" do %>
-    <i class="glyphicon glyphicon-scissors"></i> Add snip?
-<% end %>
-</div>
+
 </div>
 
 <header>
@@ -28,20 +26,58 @@
     </tr>
 </table>
 <div class="clearfix">
-<%= link_to edit_volt_path(@volt), :class => "btn btn-lg btn-info pull-right" do %>
+    <div class="btn-group pull-right">
+<%= link_to edit_volt_path(@volt), :class => "btn btn-lg btn-info" do %>
     <i class="glyphicon glyphicon-floppy-open"></i> Update volt?
 <% end %>
-<div class="alert alert-info">
-    Awating functionality to loop through snips
-<%#
-<%= :snips_id.each do %>
-      <%# <h2><%= link_to snip.name, snip %></h2>
-      <%# <p><%= snip.summary %></p>
-<%#  <% end %>
+<%= link_to new_volt_snip_path(@volt), :class => "btn btn-lg btn-success" do %>
+    <i class="glyphicon glyphicon-scissors"></i> Add snip?
+<% end %>
+    </div>
 </div>
 
+<br/>
 
+</br/>
+<div id="volt" class="container-fluid">
 
+        <% if @volt.snips.length <= 0 %>
+            <div class="jumbotron">
+
+                <p>
+                    This volt is empty...
+                    <span class="badge"><%= @volt.snips.length%></span>
+                </p>
+            </div>
+        <% else %>
+        <div class="jumbotron">
+            <table id="snipodex">
+                <p>Snips in this volt <span class="badge"><%= @volt.snips.length%></span></p>
+                <% @volt.snips.each do |snip| %>
+                <tr>
+                    <th>
+                        <%= link_to snip.name,[:edit, @volt, snip] %>
+                    </th>
+                    <td>
+                        <span>
+                            <%= snip.summary %>
+                        </span>
+                    </td>
+                    <td>
+                        <a data-toggle="collapse" href="<%= '#expando' + @volt.id.to_s + snip.id.to_s %>"><span class="big-caret"></span></a>
+                    </td>
+                </tr>
+                <tr id="<%= 'expando' + @volt.id.to_s + snip.id.to_s %>" class="collapse">
+                    <td>
+                                    <code><%= snip.code %></code>
+
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+            <% end %>
+
+        </div>
+
+    <!-- <%# end %> -->
 </div>
-
-<hr/>

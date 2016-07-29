@@ -49,11 +49,25 @@
             <span class="help-block">Set the license</span>
         </div>
         <div class="col-sm-4">
-            <%= f.label :volt_name, class:"control-label"  %><br/>
-            <%= f.text_field :volt_name, :class => "form-control input-lg" %>
-            <span class="help-block">Name of the volt you are putting this code in, by default you have access to your own volt</span>
         </div>
+        <div class="row">
+
     </div>
+    <div class="clearfix">
+        <% unless @snip.id != '' %>
+            <%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
+                <i class="glyphicon glyphicon-trash"></i> Delete snip?
+            <% end %>
+        <% else %>
+        <a href="javascript:history.go(-1)" alt="cancel" class="pull-left btn btn-warning btn-lg">
+            <i class="glyphicon glyphicon-menu-left"></i> Cancel
+        </a>
+        <% end %>
+        <%= button_tag(type: "submit", class: "pull-right btn btn-lg btn-success", name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
+        <span class="glyphicon glyphicon-floppy-disk"></span> Make snip?
+        <% end %>
+    </div>
+</div>
     <div class="modal-footer">
         <div class="col-sm-12">
 
@@ -72,9 +86,6 @@
             </div>
         <% end %>
 
-            <%= button_tag(type: "submit", class: "pull-right btn-lg btn-success", name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
-              <span class="glyphicon glyphicon-floppy-disk"></span> Make snip?
-            <% end %>
 
 
             <% end %>

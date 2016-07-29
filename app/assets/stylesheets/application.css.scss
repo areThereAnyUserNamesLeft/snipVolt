@@ -3,6 +3,90 @@
  @import "bootstrap";
  @import "snips";
  @import "responsive.scss";
+ @import "bootstrap-material-design.css";
+ @import "ripples.css";
+
+ body {
+     background-color: #c2c2a3;
+ }
+
+ .navbar, .navbar-inverse {
+ 	border-radius: 0;
+ 	border: none;
+ 	margin-bottom: 0;
+ 	min-height: 80px;
+ }
+
+ .nav li {
+ 	display: inline;
+
+ }
+
+.navbar-toggler {
+    background-color: #fffe57;
+    color: #cfe573;
+    font-size: 3em;
+    border:0px;
+    float:left;
+    padding-right: 20px;
+    padding-left:20px;
+    padding: bottom 20px;
+    margin-top: 20px;
+
+
+}
+
+.navbar-collapse a{
+    color: #fffe57;
+    font-size: 1.1em;
+}
+ .navbar-inverse .navbar-nav > li > a {
+
+ 	font-family: Lato;
+
+ 	font-weight: 300;
+ 	padding: 30px 25px 33px 25px;
+ }
+
+
+ #logo{
+     max-height: 100%;
+     display:inline;
+
+ }
+// ------
+
+ .btn-lg, .btn-group-lg > .btn {
+ 	padding: 10px 16px;
+ 	font-size: 18px;
+ 	line-height: 1.3333333;
+ 	border-radius: 0px;
+ }
+
+ .navbar-inverse .navbar-text, .navbar-inverse .navbar-nav > li > a {
+ 	color: #fffe57;
+    font-size: 1.25em;
+
+ }
+ .navbar-inverse .navbar-nav > li > a:hover {
+ 	color: #fffe57;
+    font-size: 1.25em;
+    font-weight: bold;
+ }
+
+
+.big-caret {
+    @extend .caret;
+    border-left: 8px solid transparent;
+   border-right: 8px solid transparent;
+   border-top: 8px solid;
+
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
  body {
   padding-top: 125px;
@@ -44,7 +128,34 @@ ul.actions{
     @extend .list-inline;
 }
 .navbar {
-    height: 125px
+
+}
+#snipodex {
+    width: 100%;
+    th {
+        width: 40%;
+    }
+}
+#attributes {
+    th {
+    width: 65%;
+        width: 35%;
+    }
+}
+#attributes, #snipodex {
+    @extend .table;
+    @extend .table-condensed;
+tr:first-child{
+    td,th {
+        border-top: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+td, th {
+    line-height: 24px !important;
+}
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

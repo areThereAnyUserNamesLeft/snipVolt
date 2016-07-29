@@ -7,13 +7,63 @@
 <div id="volts" class="container-fluid">
 
     <% @volts.each do |volt| %>
-        <h2><%= link_to volt.name, volt %><small> <%= volt.project_name %></small></h2>
-        <div id="<%= 'snip' + volt.id.to_s %>" class="well">
-            <% volt.snips.each do |snip| %>
 
-                <h3><%= link_to snip.name, [:edit, volt, snip] %><small> <%= snip.summary %></small></h3>
-            <% end %>
-        </div>
+    <div class="ellipsis">
+            <h2><%= link_to volt.name, volt %><small> <%= volt.project_name %></small> <span class="badge"><%= volt.snips.length%></span><a data-toggle="collapse" href="<%= '#expand' + volt.id.to_s %>"><span class="big-caret"></span></a></h2>
 
-    <% end %>
+            <div id="<%= 'expand' + volt.id.to_s %>" class="collapse">
+                <table id="attributes" >
+                    <tr>
+                        <th>Licence</th>
+                    <td><%= volt.default_licence %></td>
+                    </tr>
+                    <tr>
+                        <th>Author</th>
+                    <td><%= volt.author.email %></td>
+                    </tr>
+                    <tr>
+                        <th>Created</th>
+                    <td><%= time_ago_in_words(volt.created_at) %></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <% if volt.snips.length <= 0 %>
+                <div class="jumbotron">
+                    <p>
+                        This volt is empty...
+                    </p>
+                </div>
+            <% else %>
+            <div class="jumbotron">
+                <table id="snipodex">
+                    <p>Snips in this volt</p>
+                    <% volt.snips.each do |snip| %>
+                    <tr>
+                        <th>
+                            <%= link_to snip.name,[:edit, volt, snip] %>
+                        </th>
+                        <td>
+                            <span>
+                                <%= snip.summary %>
+                            </span>
+                        </td>
+                        <td>
+                            <a data-toggle="collapse" href="<%= '#expando' + volt.id.to_s + snip.id.to_s %>"><span class="big-caret"></span></a>
+                        </td>
+                    </tr>
+                    <tr id="<%= 'expando' + volt.id.to_s + snip.id.to_s %>" class="collapse">
+                        <td>
+                                        <code><%= snip.code %></code>
+
+                        </td>
+                    </tr>
+                    <% end %>
+                </table>
+                <% end %>
+
+            </div>
+
+        <% end %>
+    </div>
 </div>

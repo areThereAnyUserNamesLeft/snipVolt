@@ -1,4 +1,4 @@
-<div class="form-group" style="padding:5%; height:100%;background:#f5f5f0;">
+<div class="form-group form-group-lg" style="padding:5%; height:100%;background:#f5f5f0;">
     <%= form_for([@volt, @snip]) do |f| %>
     <div class="row">
         <div class="col-sm-12">
@@ -50,13 +50,23 @@
         </div>
     </div>
     <div class="page-footer">
+        <div class="clearfix">
+
+            <%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
+                <i class="glyphicon glyphicon-trash"></i> Delete snip?
+            <% end %>
+            <div class="button-group pull-right">
+                <a href="javascript:history.go(-1)" alt="cancel" class="btn btn-warning btn-lg" data-ripple-color="#fffe57">
+                    <i class="glyphicon glyphicon-menu-left"></i> Cancel
+                </a>
+            <%= button_tag(type: "submit", class: "btn btn-lg btn-success",name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
+              <i class="glyphicon glyphicon-floppy-disk"></i> Make snip?
+            <% end %>
+        </div>
+        </div>
+
         <div class="col-sm-12">
-            <div class="clearfix">
-                <%= button_tag(type: "submit", class: "pull-right btn-lg btn-success", name: "commit", value: "conceal", :onClick => "document.getElementById('codebox').innerHTML = ace.edit('editor').getValue(); document.getElementById('thisForm').submit();") do %>
-                  <span class="glyphicon glyphicon-floppy-disk"></span> Make snip?
-                <% end %>
-            </div>
-            <div class="clearfix">
+
             <% if snip.errors.any? %>
 <div id="error_explanation" class="alert alert-danger pull-left">
                 <h2> <%= pluralize(snip.errors.count, "error") %>
@@ -81,9 +91,9 @@
     </div>
     <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
+    
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/css");
         document.getElementById('editor').style.fontSize='16px';
     </script>
-</div>

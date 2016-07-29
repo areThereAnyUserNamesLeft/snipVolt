@@ -16,3 +16,4 @@
 //= require bootstrap-sprockets
 //= require ace-rails-ap
 //= require_tree .
+//= index.js

@@ -6,13 +6,21 @@
     font-weight: bold;
     margin: 20px 0px 0px;
 }
+#snipodex {
+    width: 100%;
+    th {
+        width: 40%;
+    }
+}
 #attributes {
+    th {
+    width: 65%;
+        width: 35%;
+    }
+}
+#attributes, #snipodex {
     @extend .table;
     @extend .table-condensed;
-    width: 65%;
-th {
-    width: 35%;
-}
 tr:first-child{
     td,th {
         border-top: 0px

@@ -1,4 +1,10 @@
+<br/>
+
 <% title(@snip.name, "snipVolt") %>
+<div class="clearfix">
+<%= link_to volt_path, :class => "pull left btn btn-lg btn-info" do %>
+    <i class="glyphicon glyphicon-flash"></i> Parent volt?
+<% end %>
 <div class="btn-group pull-right">
 <%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
     <i class="glyphicon glyphicon-trash"></i> Delete snip?
@@ -6,6 +12,7 @@
 <%= link_to new_volt_snip_path, :class => "btn btn-lg btn-success" do %>
     <i class="glyphicon glyphicon-scissors"></i> New snip?
 <% end %>
+</div>
 </div>
 
 <header>
@@ -15,11 +22,7 @@
 <p>
     <%= @snip.summary %>
 </p>
-
-<pre class="js-copycode">
-    <%= @snip.code %>
-</pre>
-<table id="attributes">
+<table id="attributes" class="ellipses">
     <tr>
         <th>Licence</th>
     <td><%= @snip.licence %></td>
@@ -33,7 +36,9 @@
     <td><%= time_ago_in_words(@snip.created_at) %></td>
     </tr>
 </table>
-
+<pre class="js-copycode">
+    <%= @snip.code %>
+</pre>
 
 <div class="clearfix">
 <div class="btn-group pull-right">
@@ -43,13 +48,14 @@
 <button class="js-textareacopybtn btn btn-success btn-lg"><i class="glyphicon glyphicon-copy"></i> Copy code to clipboard?</button>
 </div>
 </div>
-<hr/>
+
+
+
+
 <div id="snips">
     <% @volt.snips.each do |snip| %>
         <% unless snip.id == @snip.id %>
         <h2><%= link_to snip.name, volt_snip_path %><small> - <%= snip.summary %></small></h2>
-
-
         <div class="btn-group pull-right">
         <%= link_to [@volt, snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-sm" do %>
             <i class="glyphicon glyphicon-trash"></i> Delete snip?
@@ -60,6 +66,8 @@
         </div>
     <% end %>
     <% end %>
+
+<hr/>
 
     <script>
     function copyTextToClipboard(text) {

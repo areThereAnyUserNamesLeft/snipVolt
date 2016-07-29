@@ -4,7 +4,10 @@
             max-width: 55%;
         }
     }
+    .navbar-inverse .navbar-text, .navbar-inverse .navbar-nav > li > a {
 
+       font-size: 1em;
+    }
     ul.actions {
         position: absolute;
         bottom: -2px;
@@ -12,4 +15,7 @@
         max-width: 45%;
         text-align: right;
     }
+}
+.nav ul li {
+    float: none;
 }
