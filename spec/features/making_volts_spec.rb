@@ -5,8 +5,10 @@ Capybara.register_driver :selenium do |app|
 end
 
  RSpec.feature "Users can create new volts" do
-     let(:user) {FactoryGirl.create(:user)}
+
+     let(:user) {FactoryGirl.create(:user, :admin)}
      before do
+         login_as(user)
          visit "/"
          click_link "New volt?"
      end
@@ -19,9 +21,10 @@ end
          click_button "Make volt?"
 
          expect(page).to have_content "Volt made"
+         expect(page).to have_content "Author #{user.email}"
 
-        volt = Volt.find_by(name: "Hello whirled")
-        expect(page.current_url).to eq volt_url(volt)
+         volt = Volt.find_by(name: "Hello whirled")
+         expect(page.current_url).to eq volt_url(volt)
 
          title = "Hello whirled - snipVolt"
          expect(page).to have_title title

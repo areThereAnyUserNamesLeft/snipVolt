@@ -29,7 +29,10 @@
     </tr>
     <tr>
         <th>Author</th>
-    <td><%= @snip.author.email %></td>
+    <td><%= @snip.author.email if @snip.author %>
+
+    </td>
+
     </tr>
     <tr>
         <th>Created</th>
@@ -57,17 +60,18 @@
         <% unless snip.id == @snip.id %>
         <h2><%= link_to snip.name, volt_snip_path %><small> - <%= snip.summary %></small></h2>
         <div class="btn-group pull-right">
-        <%= link_to [@volt, snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-sm" do %>
+        <%= link_to [@volt, snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => " btn btn-danger btn-sm" do %>
             <i class="glyphicon glyphicon-trash"></i> Delete snip?
         <% end %>
         <%= link_to [:edit, @volt, snip], :class => "btn btn-sm btn-info" do %>
             <i class="glyphicon glyphicon-floppy-open"></i> Update snip?
         <% end %>
         </div>
+        <hr/>
     <% end %>
     <% end %>
+</div>
 
-<hr/>
 
     <script>
     function copyTextToClipboard(text) {
@@ -123,6 +127,5 @@
 
 
     </script>
-    </div>
 
 </div>

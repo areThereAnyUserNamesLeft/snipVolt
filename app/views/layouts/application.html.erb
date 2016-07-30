@@ -9,22 +9,25 @@
         <% end %>
     </title>
 
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Material Design fonts -->
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <!-- Bootstrap Material Design -->
-  
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div class="container">
 
         <% flash.each do |key, message| %>
@@ -47,36 +50,39 @@
         <div class="collapse navbar-collapse"  id="collapse">
             <ul class="nav navbar-nav">
             <li><%= link_to '/' do %>
-            <i class="glyphicon glyphicon-home"></i> Home
+            <i class="material-icons">home</i> Home
             <% end %></li>
             <!-- <li>
             <%#= link_to new_snip_path do %>
             <i class="glyphicon glyphicon-scissors"></i> New snip?
             <%# end %></li> -->
             <li><%= link_to new_volt_path do %>
-            <i class="glyphicon glyphicon-flash"></i> New volt?
+            <i class="material-icons">flash_on</i> New volt?
             <% end %></li>
         <% unless user_signed_in? %>
             <li class="<%= '' if current_page?('/users/sign_up') %>">
                 <%= link_to new_user_registration_path do %>
-            <i class="glyphicon glyphicon-edit"></i> Sign up?
+            <i class="material-icons">perm_identity</i> Sign up?
             <% end %></li>
             <li class="<%= '' if current_page?('/users/sign_up') %>">
                 <%= link_to new_user_session_path do %>
-            <i class="glyphicon glyphicon-user"></i> Log in?
+            <i class="material-icons">person</i> Log in?
             <% end %></li>
         <% end %>
          </ul>
-         <div class="navbar-right">
+
             <% if user_signed_in? %>
 
-                    <p class="navbar-text">
-                        Hello <i class="glyphicon glyphicon-user"></i> <%= current_user.email %>
-                    </p>
+
+
+
+                     <div class="navbar-right">
                     <ul class="nav navbar-nav">
                         <li>
-                            <%= link_to "Sign out?", destroy_user_session_path,
-                            method: :delete %>
+                             <%= link_to  destroy_user_session_path,method: :delete do %>
+                             <span> <i class="material-icons">account_box</i> <%= current_user.email %></span>
+                             <i class="material-icons">directions_run</i> Sign out?
+                             <% end %>
                         </li>
                     </ul>
             <% end %>
@@ -89,39 +95,34 @@
          </div>
      </div>
 </nav>
+<br/>
+<div class="container body_wrapper">
 
 
-<div class="container">
 
-<div class="row">
-<div class="col-sm-2">
-</div>
-<div class="col-sm-8">
 
 
 <%= yield %>
 
 
-</div>
-<div class="col-sm-2"></div>
 
-<div class="row">
-    <div class="col-sm-2">
 
-    </div>
-    <div class="col-sm-8">
 
-    </div>
-<div class="col-sm-2">
-</div></div>
+
 
 
 </div>
-
-</div>
-<script>
-$.material.init();
-$.material.ripples();
-</script>
 </body>
+  <script>
+      $.material.init();
+      $.material.ripples();
+  </script>
+  <div class="col-sm-12">
+      &nbsp;
+  </div>
+
+  <div class="navbar navbar-inverse footer navbar-fixed">
+      <div class="container">
+      </div>
+    </div>
 </html>

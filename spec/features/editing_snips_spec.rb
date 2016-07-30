@@ -28,7 +28,9 @@ RSpec.feature "Users can edit snips make snip", js:true do
             expect(page).to have_content "Snippy snip"
             click_link "Parent volt?"
         end
-        scenario "editing snip", js:true do
+        scenario "users can edit snips", js:true do
+            visit "/"
+            click_link "Awsome"
             click_link "Snippy snip"
             click_link "Update snip?"
             fill_in "Name", with: "Snoopy is cool"
@@ -36,8 +38,9 @@ RSpec.feature "Users can edit snips make snip", js:true do
             fill_in_editor_field "print 'Hello World'"
             expect(page).to have_editor_display text: "print 'Hello World'"
             click_button "Make snip?"
-            click_link "Parent volt?"
+            visit "/"
             expect(page).to have_content "Awsome"
+            click_link "Awsome"
             expect(page).to have_content "Snoopy is cool"
     end
 end

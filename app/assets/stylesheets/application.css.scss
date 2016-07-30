@@ -5,10 +5,26 @@
  @import "responsive.scss";
  @import "bootstrap-material-design.css";
  @import "ripples.css";
+ @import "admin/application";
+body{
+ background-color: #c2c2a3;
+ font-family: 'Roboto', sans-serif;
+}
+ h1,h2,h3,h4,h5,h6 {
 
- body {
-     background-color: #c2c2a3;
+     font-weight:lighter;
  }
+.footer{
+  position: relative;;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 5%;
+  display: block;
+}
+.body_wrapper {
+    height:100vh;
+}
 
  .navbar, .navbar-inverse {
  	border-radius: 0;
@@ -42,7 +58,7 @@
 }
  .navbar-inverse .navbar-nav > li > a {
 
- 	font-family: Lato;
+ 	font-family: 'Roboto', sans-serif;
 
  	font-weight: 300;
  	padding: 30px 25px 33px 25px;

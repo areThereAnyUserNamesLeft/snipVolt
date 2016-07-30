@@ -64,20 +64,20 @@
                         </span>
                     </td>
                     <td>
-                        <a data-toggle="collapse" href="<%= '#expando' + @volt.id.to_s + snip.id.to_s %>"><span class="big-caret"></span></a>
+                        <a data-toggle="collapse" href="<%= '#expando' + @volt.id.to_s + snip.id.to_s %>">code <span class="big-caret"></span></a>
                     </td>
                 </tr>
                 <tr id="<%= 'expando' + @volt.id.to_s + snip.id.to_s %>" class="collapse">
                     <td>
-                                    <code><%= snip.code %></code>
+                                    <pre><%= snip.code %></pre>
 
                     </td>
                 </tr>
                 <% end %>
             </table>
             <% end %>
-
         </div>
+
 
     <!-- <%# end %> -->
 </div>

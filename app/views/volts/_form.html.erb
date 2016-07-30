@@ -1,5 +1,23 @@
-<div class="form-group input placeholder form-group-lg" style="padding:5%; height:100%;background:#f5f5f0;">
+<div class="form-group input form-group-lg">
     <%= simple_form_for(volt) do |f| %>
+<div class="container">
+    <% if volt.errors.any? %>
+<div id="error_explanation" class="alert alert-warning pull-left">
+        <h2> <%= pluralize(volt.errors.count, "error") %>
+            volt not made because:
+        </h2>
+
+        <ul>
+            <% volt.errors.full_messages.each do |msg| %>
+            <li>
+                <%= msg %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+</div>
+
     <div class="row">
 
             <%= f.input :name, :class => "form-control input-lg" %>
@@ -30,23 +48,6 @@
     <div class="footer">
         <div class="col-sm-12">
 
-            <% if volt.errors.any? %>
-<div id="error_explanation" class="alert alert-danger pull-left">
-                <h2> <%= pluralize(volt.errors.count, "error") %>
-                    volt not made because:
-                </h2>
-
-                <ul>
-                    <% volt.errors.full_messages.each do |msg| %>
-                    <li>
-                        <%= msg %>
-                    </li>
-                    <% end %>
-                </ul>
-            </div>
-        <% end %>
-
-
             <% end %>
         </div>
 
@@ -54,3 +55,4 @@
     <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 
 </div>
+<br/>

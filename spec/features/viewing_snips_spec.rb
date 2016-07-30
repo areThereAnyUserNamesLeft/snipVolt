@@ -12,14 +12,14 @@ RSpec.feature "Users can view snips" do
             login_as(user)
             visit "/"
             click_link "New volt?"
-            fill_in "Name", with: "Hello whirled"
+            fill_in "Name", with: "Cheese"
             fill_in "Project name", with: "My first program - a parody"
             select "MIT", :from => "Default licence"
             click_button "Make volt?"
         end
     scenario "with snip details", js:true do
         visit "/"
-        click_link "My snipVolt"
+        click_link "Cheese"
         click_link "Add snip?"
         fill_in "Name", with: "Hello whirled"
         fill_in "Summary", with: "My first program - a parody"
@@ -27,10 +27,10 @@ RSpec.feature "Users can view snips" do
         fill_in_editor_field "puts 'Hello World'"
         expect(page).to have_editor_display text: "puts 'Hello World'"
         click_button "Make snip?"
-
-        visit "/"
-
         expect(page).to have_content "Hello whirled"
+        
+
+
 
     end
 end
