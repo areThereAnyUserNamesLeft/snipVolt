@@ -30,6 +30,7 @@ RSpec.feature "Users can edit snips make snip", js:true do
         end
         scenario "editing snip", js:true do
             click_link "Snippy snip"
+            click_link "Update snip?"
             fill_in "Name", with: "Snoopy is cool"
             select "BSD", :from => "Licence"
             fill_in_editor_field "print 'Hello World'"

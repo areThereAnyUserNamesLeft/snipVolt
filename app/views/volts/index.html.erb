@@ -39,7 +39,7 @@
                     <% volt.snips.each do |snip| %>
                     <tr>
                         <th>
-                            <%= link_to snip.name,[:edit, volt, snip] %>
+                            <%= link_to snip.name,[volt, snip] %>
                         </th>
                         <td>
                             <span>

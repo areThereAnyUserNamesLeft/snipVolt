@@ -45,15 +45,15 @@
 
 
     <div class="clearfix">
-        <% unless @snip.id != '' %>
+        <% unless @snip.id == '' %>
             <%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
                 <i class="glyphicon glyphicon-trash"></i> Delete snip?
             <% end %>
-        <% else %>
+        <% end %>
         <a href="javascript:history.go(-1)" alt="cancel" class="pull-left btn btn-warning btn-lg">
             <i class="glyphicon glyphicon-menu-left"></i> Cancel
         </a>
-        <% end %>
+
         <%= f.button :button, class: "pull-right btn btn-lg btn-success btn-raised" do %>
         <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Make snip?
         <% end %>
