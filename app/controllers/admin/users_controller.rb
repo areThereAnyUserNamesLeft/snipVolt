@@ -27,7 +27,7 @@ def archive
     else
     @user.archive
     flash[:notice] = "User archived"
-    end
+end
     redirect_to admin_users_path
 end
 def update
