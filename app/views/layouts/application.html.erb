@@ -79,10 +79,20 @@
                      <div class="navbar-right">
                     <ul class="nav navbar-nav">
                         <li>
+                            <% if current_user.try(:admin?) %>
+                                <%= link_to admin_root_path do %>
+                                    <span><i class="material-icons">account_box</i> <%= current_user.email %></span>
+                                <% end %>
+                                <li>
+                                    <%= link_to  destroy_user_session_path,method: :delete do %>
+                                <i class="material-icons">directions_run</i> Sign out?
+                                    <% end %>
+                                </li>
+                            <% else %>
                              <%= link_to  destroy_user_session_path,method: :delete do %>
-                             <span> <i class="material-icons">account_box</i> <%= current_user.email %></span>
-                             <i class="material-icons">directions_run</i> Sign out?
+                             <span> <i class="material-icons">account_box</i> <%= current_user.email %></span> <i class="material-icons">directions_run</i> Sign out?
                              <% end %>
+                            <% end %>
                         </li>
                     </ul>
             <% end %>
@@ -95,6 +105,7 @@
          </div>
      </div>
 </nav>
+<br/>
 <br/>
 <div class="container body_wrapper">
 

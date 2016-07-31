@@ -1,14 +1,28 @@
 <div class="row" id="admin">
     <div class="col-md-9">
-        <header>
-            <h1>Admin dashboard</h1>
-        </header>
+        <div class="alert alert-warning">
+            <header>
+                <h1>Admin dashboard <i class="material-icons">warning</i></h1>
+            </header>
+        </div>
     </div>
     <div class="col-md-3">
         <h2>Admin Options:</h2>
         <ul class="nav nav-stacked">
             <li>
-                links to follow
+                <%= link_to admin_users_path do %>
+                    <i class="material-icons">person_add</i> Spawn user
+                <% end %>
+            </li>
+            <li>
+                <%= link_to "/" do %>
+                    <i class="material-icons">directions_run</i> Exit admin
+                <% end %>
+            </li>
+            <li>
+                <%= link_to admin_users_path do %>
+                    <i class="material-icons">mode_edit</i> Edit user
+                <% end %>
             </li>
         </ul>
     </div>

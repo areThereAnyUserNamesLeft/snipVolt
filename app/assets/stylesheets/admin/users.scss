@@ -1,0 +1,10 @@
+// Place all the styles related to the admin/users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.btn.btn-primary:not(.btn-raised), .input-group-btn .btn.btn-primary:not(.btn-raised) {
+    color: #ffffff;
+}
+
+.btn {
+    border-radius: 0px;
+}

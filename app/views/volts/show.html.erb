@@ -3,7 +3,7 @@
 <div class="clearfix">
 
 <%= link_to volt_path(@volt), method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
-    <i class="glyphicon glyphicon-trash"></i> Delete volt?
+    <i class="material-icons">delete</i> Delete volt?
 <% end %>
 
 </div>
@@ -28,10 +28,10 @@
 <div class="clearfix">
     <div class="btn-group pull-right">
 <%= link_to edit_volt_path(@volt), :class => "btn btn-lg btn-info" do %>
-    <i class="glyphicon glyphicon-floppy-open"></i> Update volt?
+    <i class="material-icons">update</i> Update volt?
 <% end %>
 <%= link_to new_volt_snip_path(@volt), :class => "btn btn-lg btn-success" do %>
-    <i class="glyphicon glyphicon-scissors"></i> Add snip?
+    <i class="material-icons">content_cut</i> Add snip?
 <% end %>
     </div>
 </div>

@@ -3,14 +3,14 @@
 <% title(@snip.name, "snipVolt") %>
 <div class="clearfix">
 <%= link_to volt_path, :class => "pull left btn btn-lg btn-info" do %>
-    <i class="glyphicon glyphicon-flash"></i> Parent volt?
+    <i class="material-icons">flash_on</i> Parent volt?
 <% end %>
 <div class="btn-group pull-right btn-raised">
 <%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
-    <i class="glyphicon glyphicon-trash"></i> Delete snip?
+    <i class="material-icons">delete</i> Delete snip?
 <% end %>
 <%= link_to new_volt_snip_path, :class => "btn btn-lg btn-success" do %>
-    <i class="glyphicon glyphicon-scissors"></i> New snip?
+    <i class="material-icons">content_cut</i> New snip?
 <% end %>
 </div>
 </div>
@@ -46,9 +46,9 @@
 <div class="clearfix">
 <div class="btn-group pull-right">
 <%= link_to [:edit, @volt, @snip], :class => "btn btn-lg btn-info" do %>
-    <i class="glyphicon glyphicon-floppy-open"></i> Update snip?
+    <i class="material-icons">update</i> Update snip?
 <% end %>
-<button class="js-textareacopybtn btn btn-success btn-lg"><i class="glyphicon glyphicon-copy"></i> Copy code to clipboard?</button>
+<button class="js-textareacopybtn btn btn-success btn-lg"><i class="material-icons">content_paste</i> Copy code to clipboard?</button>
 </div>
 </div>
 
@@ -61,10 +61,10 @@
         <h2><%= link_to snip.name, volt_snip_path %><small> - <%= snip.summary %></small></h2>
         <div class="btn-group pull-right">
         <%= link_to [@volt, snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => " btn btn-danger btn-sm" do %>
-            <i class="glyphicon glyphicon-trash"></i> Delete snip?
+            <i class="material-icons">delete</i> Delete snip?
         <% end %>
         <%= link_to [:edit, @volt, snip], :class => "btn btn-sm btn-info" do %>
-            <i class="glyphicon glyphicon-floppy-open"></i> Update snip?
+            <i class="material-icons">update</i> Update snip?
         <% end %>
         </div>
         <hr/>
