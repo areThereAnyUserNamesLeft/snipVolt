@@ -12,6 +12,7 @@ RSpec.feature "Admins can spawn users" do
         visit "/"
         click_link "#{admin.email}"
         click_link "Spawn user"
+        #intetionally repeated
         click_link "Spawn user"
     end
     scenario "with valid details", js:true do

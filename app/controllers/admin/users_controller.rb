@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :archive]
   def index
-      @users = User.order(:email)
+      @users = User.excluding_archived.order(:email)
   end
   def show
   end
@@ -20,6 +20,15 @@ class Admin::UsersController < Admin::ApplicationController
       end
 end
 def edit
+end
+def archive
+    if @user == current_user
+        flash[:alert] = "Cannot archive yourself"
+    else
+    @user.archive
+    flash[:notice] = "User archived"
+    end
+    redirect_to admin_users_path
 end
 def update
     if params[:user][:password].blank?

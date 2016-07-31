@@ -12,13 +12,13 @@
         width: 40%;
     }
 }
-#attributes {
-    th {
+#attributes , #user-list {
     width: 65%;
+    th {
         width: 35%;
     }
 }
-#attributes, #snipodex {
+#attributes, #snipodex, #user-list {
     @extend .table;
     @extend .table-condensed;
 tr:first-child{

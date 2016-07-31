@@ -7,13 +7,24 @@
  @import "ripples.css";
  @import "admin/application";
   @import "admin/users";
+
+
 body{
  background-color: #c2c2a3;
  font-family: 'Roboto', sans-serif;
 }
+img {
+    background: #ffffff;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
  h1,h2,h3,h4,h5,h6 {
 
      font-weight:lighter;
+ }
+ .alert-notice {
+     @extend .alert;
+     @extend .alert-info;
  }
 .footer{
   position: relative;;
@@ -40,8 +51,8 @@ body{
  }
 
 .navbar-toggler {
-    background-color: #fffe57;
-    color: #cfe573;
+    background-color: #ffd700;
+    color: #999;
     font-size: 3em;
     border:0px;
     float:left;
@@ -54,7 +65,7 @@ body{
 }
 
 .navbar-collapse a{
-    color: #fffe57;
+    color: #ffd700;
     font-size: 1.1em;
 }
  .navbar-inverse .navbar-nav > li > a {
@@ -81,12 +92,12 @@ body{
  }
 
  .navbar-inverse .navbar-text, .navbar-inverse .navbar-nav > li > a {
- 	color: #fffe57;
+ 	color: #ffd700;
     font-size: 1.25em;
 
  }
  .navbar-inverse .navbar-nav > li > a:hover {
- 	color: #fffe57;
+ 	color: #ffd700;
     font-size: 1.25em;
     font-weight: bold;
  }

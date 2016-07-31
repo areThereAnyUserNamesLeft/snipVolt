@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730155459) do
+ActiveRecord::Schema.define(version: 20160731191902) do
 
   create_table "snips", force: :cascade do |t|
     t.string   "snipOwner"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160730155459) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
+    t.datetime "archived_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
