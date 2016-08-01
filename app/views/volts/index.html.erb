@@ -2,7 +2,7 @@
 <header>
     <h1>Your volts <span class="badge "><%= @volts.length %></span></h1>
 </header>
-<div id="volts" class="container-fluid">
+<div id="volts" class="container">
 
     <% @volts.each do |volt| %>
 
@@ -41,15 +41,14 @@
                       <div class="least-content"><%= time_ago_in_words(snip.created_at) %></div>
                       <h4 class="list-group-item-heading"><%= link_to snip.name,[volt, snip] %></h4>
                       <p class="list-group-item-text"><%= snip.summary %></p>
-                      <div class="pull-right"> <a data-toggle="collapse" class="btn btn-info" href="<%= '#expando' + volt.id.to_s + snip.id.to_s %>">code <span class="big-caret"></span></a></div>
-
+                      <div class="pull-right"> <a data-toggle="collapse" class="btn btn-info" href="<%= '#expando' + volt.id.to_s + snip.id.to_s %>">code <span class="big-caret"></span></a><br/></div>
                       <div id="<%= 'expando' + volt.id.to_s + snip.id.to_s %>" class="collapse"><pre><%= snip.code %></pre></div>
-                    </div>
-                </div>
-                <% end %>
-                <% end %>
-                </div>
+                  </div>
+              </div>
                 <% end %>
             </div>
-</div>
-</div>
+                <% end %>
+            </div>
+        </div>
+            <% end %>
+        </div>

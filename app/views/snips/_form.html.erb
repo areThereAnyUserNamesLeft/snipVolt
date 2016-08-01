@@ -24,7 +24,7 @@
 
 
 
-            <div id="editor"><% if @snip.code = '' %>Your code goes here...<% else %><%= @snip.code %><% end %></div>
+            <div id="editor"><% if @snip.code != '' %><%= @snip.code %><% else %>Your code goes here...<% end %></div>
             <p>
                 If you can see this then the text editor is broken!<br/>
                 If you can see this then the text editor is broken!<br/>
@@ -47,7 +47,7 @@
     </div>
     <%= f.input :language, :as => :select, :prompt => "choose a language", class: "form-control input-lg", collection: ["CSS","SASS/SCSS","python2","python3","java","JavaScript","HTML","SQL","BASH/Shell","PHP","Perl","C#" ,"C++", "C"] %>
         <div style="visibility:hidden; height:0px">
-            <%= f.input :code, :as => :text, :input_html => { :cols => 50, :rows => 5 }, :readonly => true %>
+            <%= f.input :code, :as => :text, :input_html => { :cols => 50, :rows => 5 }, :readonly => true, class: "codebox" %>
         </div>
 
             <span class="help-block">Choose your language...</span>
@@ -57,7 +57,7 @@
             <span class="help-block">Summarize the snip - if your over a tweet's length (144 characters) then use the description to give detail</span>
         <%= f.input :readme, :as => :text, :input_html => { :cols => 50, :rows => 5 }, :class => "form-control input-lg"  %>
             <span class="help-block">Detailed specs - e.g. dependencies, the stuff that you'll forget</span>
-        <%= f.input :licence, :as => :select, :prompt => "choose a licence", :collection => ["Public (for all to see & reuse)",'Private - for yor yes only',"GPL - Gnu public licence","BSD","MIT"], :class => "form-control input-lg" %>
+        <%= f.input :licence, :as => :select, :prompt => "choose a licence", :collection => ["Public (for all to see & reuse)",'Private - for your yes only',"GPL - Gnu public licence","BSD","MIT"], :class => "form-control input-lg" %>
             <span class="help-block">Set the license</span>
 
 
