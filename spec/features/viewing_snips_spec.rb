@@ -7,19 +7,16 @@ end
 
 RSpec.feature "Users can view snips" do
     let!(:user) {FactoryGirl.create(:user)}
+    let(:volt){FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")}
+
     before do
-            FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")
             login_as(user)
+            assign_role!(user, :viewer,volt)
             visit "/"
-            click_link "New volt?"
-            fill_in "Name", with: "Cheese"
-            fill_in "Project name", with: "My first program - a parody"
-            select "MIT", :from => "Default licence"
-            click_button "Make volt?"
+            click_link "My snipVolt"
+
         end
     scenario "with snip details", js:true do
-        visit "/"
-        click_link "Cheese"
         click_link "Add snip?"
         fill_in "Name", with: "Hello whirled"
         fill_in "Summary", with: "My first program - a parody"
@@ -28,7 +25,7 @@ RSpec.feature "Users can view snips" do
         expect(page).to have_editor_display text: "puts 'Hello World'"
         click_button "Make snip?"
         expect(page).to have_content "Hello whirled"
-        
+
 
 
 

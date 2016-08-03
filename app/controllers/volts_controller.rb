@@ -5,6 +5,7 @@ class VoltsController < ApplicationController
         @volts = Volt.all
     end
     def show
+        authorize @volt, :show?
     end
     def new
         @volt = Volt.new

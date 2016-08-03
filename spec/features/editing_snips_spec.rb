@@ -6,17 +6,13 @@ end
 
 RSpec.feature "Users can edit snips make snip", js:true do
     let!(:user) {FactoryGirl.create(:user)}
+    let(:volt) {FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")}
     before do
-            FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")
+
             login_as(user)
-            visit "/"
-            click_link "New volt?"
-            fill_in "Name", with: "Awsome"
-            fill_in "Project name", with: "My first program - a parody"
-            select "MIT", :from => "Default licence"
-            click_button "Make volt?"
-            visit "/"
-            click_link "Awsome"
+            assign_role!(user, :viewer, volt)
+            visit volt_path(volt)
+
             click_link "Add snip?"
             fill_in "Name", with: "Snippy snip"
             fill_in "Summary", with: "Hello world is a cool program"
@@ -29,7 +25,7 @@ RSpec.feature "Users can edit snips make snip", js:true do
         end
         scenario "users can edit snips", js:true do
             visit "/"
-            click_link "Awsome"
+            click_link "My snipVolt"
             click_link "Snippy snip"
             click_link "Update snip?"
             fill_in "Name", with: "Snoopy is cool"
@@ -38,9 +34,10 @@ RSpec.feature "Users can edit snips make snip", js:true do
             expect(page).to have_editor_display text: "print 'Hello World'"
             click_button "Make snip?"
             visit "/"
-            expect(page).to have_content "Awsome"
-            click_link "Awsome"
+            expect(page).to have_content "My snipVolt"
+            click_link "My snipVolt"
             expect(page).to have_content "Snoopy is cool"
+    
     end
 end
 

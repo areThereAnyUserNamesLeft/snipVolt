@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731191902) do
+ActiveRecord::Schema.define(version: 20160802181450) do
+
+  create_table "roles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "role"
+    t.integer  "volt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "roles", ["user_id"], name: "index_roles_on_user_id"
+  add_index "roles", ["volt_id"], name: "index_roles_on_volt_id"
 
   create_table "snips", force: :cascade do |t|
     t.string   "snipOwner"

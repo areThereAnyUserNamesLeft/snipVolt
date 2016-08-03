@@ -7,8 +7,11 @@ end
 
 RSpec.feature "Users can edit existing volts" do
      let(:user) {FactoryGirl.create(:user)}
+     let(:volt){FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")}
+
     before do
-            FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")
+        login_as(user)
+        assign_role!(user, :viewer,volt)
 
         visit "/"
 

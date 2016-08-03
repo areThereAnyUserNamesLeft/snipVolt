@@ -20,6 +20,8 @@ gem 'ace-rails-ap', '~> 4.0', '>= 4.0.2'
 #keeping this as don't use it but rails throws a wobbly if I remove it
 gem 'simple_form', "~> 3.1.0"
 
+gem 'pundit', '~> 0.3.0'
+
 
 
 

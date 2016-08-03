@@ -15,7 +15,7 @@ RSpec.feature "Admins can spawn users" do
         #intetionally repeated
         click_link "Spawn user"
     end
-    scenario "with valid details", js:true do
+    scenario "with valid details" do
         find("#user_password").set("password")
         find('#user_email').set("newbie@example.com")
         click_button "Create User"

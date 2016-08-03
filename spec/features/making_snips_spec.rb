@@ -5,23 +5,26 @@ Capybara.register_driver :selenium do |app|
 end
 
 RSpec.feature "Users can create new volts" do
-    let(:user) {FactoryGirl.create(:user)}
+    let!(:user) {FactoryGirl.create(:user)}
+    let(:volt){FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")}
+
     before do
-        login_as(user)
-        visit "/"
-        click_link "New volt?"
+            login_as(user)
+            assign_role!(user, :viewer,volt)
+            visit "/"
+            click_link "My snipVolt"
     end
 
-    scenario "with valid attributes", js: true do
-
+    scenario "with valid attributes", js:true do
+        click_link "Add snip?"
         fill_in "Name", with: "Hello whirled"
-        fill_in "Project name", with: "My first program - a parody"
-        select "MIT", :from => "Default licence"
-        click_button "Make volt?"
+        fill_in "Summary", with: "My first program - a parody"
 
-
-#needs to be manually tested for now as depends on the browser running JS
-        expect(page).to have_content "Volt made"
+        fill_in_editor_field "puts 'Hello World'"
+        expect(page).to have_editor_display text: "puts 'Hello World'"
+        click_button "Make snip?"
+        expect(page).to have_content "Hello whirled"
+        expect(page).to have_content "Snip has been created."
          expect(page).to have_content "Author #{user.email}"
 
         snip = Snip.find_by(name: "Hello whirled")
@@ -31,8 +34,9 @@ RSpec.feature "Users can create new volts" do
         expect(page).to have_title title
     end
     scenario"when providing invalid attributes" do
-        click_button "Make volt?"
-        expect(page).to have_content "Volt not made"
+        click_link "Add snip?"
+        click_button "Make snip?"
+        expect(page).to have_content "Snip not made"
         expect(page).to have_content "can't be blank"
 
     end
