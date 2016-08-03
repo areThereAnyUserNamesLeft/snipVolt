@@ -16,4 +16,10 @@ RSpec.feature "Users can view volts" do
         click_link "test snip volt"
         expect(page.current_url).to eq volt_url(volt)
     end
+        scenario "unless they do not have permission" do
+            FactoryGirl.create(:volt, name: "Hidden")
+        visit "/"
+        expect(page).not_to have_content "Hidden"
+    end
+
 end

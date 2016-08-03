@@ -14,6 +14,31 @@ describe VoltPolicy do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 
+  context "policy_scope" do
+      subject { Pundit.policy_scope(user, Volt) }
+
+      let!(:volt) { FactoryGirl.create :volt }
+      let(:user) { FactoryGirl.create :user }
+      it "is empty for anonymous users" do
+          expect(Pundit.policy_scope(nil, Volt)).to be_empty
+      end
+
+      it "includes volts a user is allowed to view" do
+          assign_role!(user,:viewer, volt)
+          expect(subject).to include(volt)
+      end
+
+      it "doesn't include volts a user is not allowed to view" do
+          expect(subject).to be_empty
+      end
+
+
+      it "returns all projects for admins" do
+          user.admin = true
+          expect(Pundit.policy_scope(nil, Volt)).to be_empty
+      end
+  end
+
   permissions :show? do
       let(:user) {FactoryGirl.create :user }
       let(:volt) {FactoryGirl.create :volt }

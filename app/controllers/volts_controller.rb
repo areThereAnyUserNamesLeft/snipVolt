@@ -2,7 +2,7 @@ class VoltsController < ApplicationController
     before_action :set_volt, only: [:show, :edit, :update, :destroy]
 
     def index
-        @volts = Volt.all
+        @volts = policy_scope(Volt)
     end
     def show
         authorize @volt, :show?
