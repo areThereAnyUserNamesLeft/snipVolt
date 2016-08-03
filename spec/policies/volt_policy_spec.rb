@@ -67,6 +67,41 @@ describe VoltPolicy do
           expect(subject).not_to permit(user, volt)
       end
 
+permissions :update? do
+    let(:user) { FactoryGirl.create :user }
+    let(:volt) { FactoryGirl.create :volt}
+
+    it "blocks anonymous users" do
+        expect(subject).not_to permit(nil, volt)
+    end
+
+    it "doesn't allow viewers of the volt" do
+        assign_role!(user, :viewer, volt)
+        expect(subject).not_to permit(user, volt)
+    end
+
+    it "doesn't allow editors of the volt" do
+        assign_role!(user, :editor, volt)
+        expect(subject).not_to permit(user, volt)
+    end
+
+    it "doesn't allow managers of the volt" do
+        assign_role!(user, :manager, volt)
+        expect(subject).to permit(user, volt)
+    end
+
+    it "allow administrators" do
+        admin = FactoryGirl.create :user, :admin
+        expect(subject).to permit(admin, volt)
+    end
+
+    it "doesn't allow assigned to other projects" do
+        other_project = FactoryGirl.create :volt
+        assign_role!(user, :manager, other_project)
+        expect(subject).not_to permit(user, volt)
+    end
+end
+
 
 
 

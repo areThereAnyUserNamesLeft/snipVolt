@@ -11,7 +11,7 @@ RSpec.feature "Users can edit existing volts" do
 
     before do
         login_as(user)
-        assign_role!(user, :viewer,volt)
+        assign_role!(user, :manager, volt)
 
         visit "/"
 

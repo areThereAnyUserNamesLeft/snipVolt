@@ -11,8 +11,10 @@ class VoltsController < ApplicationController
         @volt = Volt.new
     end
     def  edit
+        authorize @volt, :update?
     end
     def update
+        authorize @volt, :update?
         if @volt.update(volt_params)
             flash[:notice] = "Volt has been updated"
             redirect_to @volt
