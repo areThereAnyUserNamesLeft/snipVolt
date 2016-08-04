@@ -8,7 +8,7 @@ class SnipsController < ApplicationController
     @snip = @volt.snips.build
   end
   def show
-    #   @snip = @volt.snips.find(params[:id])
+    authorize @snip, :show?
   end
   def create
     @snip = @volt.snips.build(snip_params)

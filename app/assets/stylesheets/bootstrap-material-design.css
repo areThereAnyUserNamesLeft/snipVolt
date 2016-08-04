@@ -1900,6 +1900,7 @@ legend {
 .list-group .list-group-item .row-content .action-secondary ~ * {
   max-width: calc(100% - 30px);
 }
+
 .list-group .list-group-item .row-content .least-content {
   position: absolute;
   right: 16px;

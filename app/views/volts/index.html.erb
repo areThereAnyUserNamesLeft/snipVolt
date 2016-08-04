@@ -9,46 +9,44 @@
             <h2><%= link_to volt.name, volt %><small> <%= volt.project_name %></small> <span class="badge"><%= volt.snips.length%></span><a data-toggle="collapse" href="<%= '#expand' + volt.id.to_s %>"><span class="big-caret"></span></a></h2>
 
             <div id="<%= 'expand' + volt.id.to_s %>" class="collapse">
-                <table id="attributes" >
-                    <tr>
-                        <th>Licence</th>
-                    <td><%= volt.default_licence %></td>
-                    </tr>
-                    <tr>
-                        <th>Author</th>
-                    <td><%= volt.author.try(:email) %></td>
-                    </tr>
-                    <tr>
-                        <th>Created</th>
-                    <td><%= time_ago_in_words(volt.created_at) %></td>
-                    </tr>
-                </table>
+                    <table id="attributes" >
+                        <tr>
+                            <th>Licence</th>
+                            <td><%= volt.default_licence %></td>
+                        </tr>
+                        <tr>
+                            <th>Author</th>
+                            <td><%= volt.author.try(:email) %></td>
+                        </tr>
+                        <tr>
+                            <th>Created</th>
+                            <td><%= time_ago_in_words(volt.created_at) %></td>
+                        </tr>
+                    </table>
+                <br>
+                <% if volt.snips.length <= 0 %>
+                    <!-- does nothing by intention-->
+                <% else %>
 
-            <br>
-            <% if volt.snips.length <= 0 %>
-                <!-- does nothing by intention-->
-            <% else %>
+                <div class="list-group" id="snipodex">
+                    <div class="snips">
+                            <p>Snips in this volt</p>
+                            <% volt.snips.each do |snip| %>
+                        <div class="list-group-item side-box">
+                                <div class="row-action-primary"><i class="material-icons">content_cut</i></div>
+                                <div class="row-content">
+                                    <div class="codedContent">
+                                      <div> Created <%= time_ago_in_words(snip.created_at) %> ago</div>
+                                      <h4 class="list-group-item-heading"><%= link_to snip.name,[volt, snip] %> <small class="list-group-item-text"> <%= snip.summary %><div class="pull-right"> <a data-toggle="collapse" class="btn btn-info" href="<%= '#expando' + volt.id.to_s + snip.id.to_s %>">code <span class="big-caret"></span></a></div></small></h4>
+                                        <div id="<%= 'expando' + volt.id.to_s + snip.id.to_s %>" class="collapse"><pre><%= snip.code %></pre></div>
+                                    </div>
 
-            <div>
-                    <p>Snips in this volt</p>
-                    <div class="list-group" id="snipodex">
-                    <% volt.snips.each do |snip| %>
-                    <div class="list-group-item">
-                    <div class="row-action-primary">
-                        <i class="material-icons">content_cut</i>
+                                </div>
+                        </div>
+                        <% end %>
                     </div>
-                    <div class="row-content">
-                      <div class="least-content"><%= time_ago_in_words(snip.created_at) %></div>
-                      <h4 class="list-group-item-heading"><%= link_to snip.name,[volt, snip] %></h4>
-                      <p class="list-group-item-text"><%= snip.summary %></p>
-                      <div class="pull-right"> <a data-toggle="collapse" class="btn btn-info" href="<%= '#expando' + volt.id.to_s + snip.id.to_s %>">code <span class="big-caret"></span></a><br/></div>
-                      <div id="<%= 'expando' + volt.id.to_s + snip.id.to_s %>" class="collapse"><pre><%= snip.code %></pre></div>
-                  </div>
-              </div>
+                </div>
                 <% end %>
             </div>
-                <% end %>
-            </div>
-        </div>
             <% end %>
         </div>

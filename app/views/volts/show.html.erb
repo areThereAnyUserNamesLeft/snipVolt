@@ -25,16 +25,17 @@
     <td><%= time_ago_in_words(@volt.created_at) %></td>
     </tr>
 </table>
-<div class="clearfix">
-    <div class="btn-group pull-right">
-<%= link_to edit_volt_path(@volt), :class => "btn btn-lg btn-info" do %>
-    <i class="material-icons">update</i> Update volt?
-<% end %>
-<%= link_to new_volt_snip_path(@volt), :class => "btn btn-lg btn-success" do %>
-    <i class="material-icons">content_cut</i> Add snip?
-<% end %>
+
+    <div class="clearfix">
+        <div class="btn-group pull-right">
+    <%= link_to edit_volt_path(@volt), :class => "btn btn-lg btn-info" do %>
+        <i class="material-icons">update</i> Update volt?
+    <% end %>
+    <%= link_to new_volt_snip_path(@volt), :class => "btn btn-lg btn-success" do %>
+        <i class="material-icons">content_cut</i> Add snip?
+    <% end %>
+        </div>
     </div>
-</div>
 
 <br/>
 
