@@ -6,6 +6,7 @@ class SnipsController < ApplicationController
 
   def new
     @snip = @volt.snips.build
+    authorize @snip, :create?
   end
   def show
     authorize @snip, :show?
@@ -13,6 +14,7 @@ class SnipsController < ApplicationController
   def create
     @snip = @volt.snips.build(snip_params)
 		@snip.author = current_user
+        authorize @snip, :create?
 
     if @snip.save
       flash[:notice] = "Snip has been created."
@@ -24,9 +26,13 @@ class SnipsController < ApplicationController
   end
 
   def edit
+      authorize @snip, :update?
   end
 
   def update
+
+    authorize @snip, :update?
+
     if @snip.update(snip_params)
       flash[:notice] = "Snip has been updated."
 
@@ -39,6 +45,7 @@ class SnipsController < ApplicationController
   end
 
   def destroy
+    authorize @snip, :destroy?
     @snip.destroy
     flash[:notice] = "Snip has been terminated with extreme prejudice"
 

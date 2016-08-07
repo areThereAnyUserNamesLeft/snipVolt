@@ -4,13 +4,13 @@ Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
-RSpec.feature "Users can create new volts" do
+RSpec.feature "Users can create new snips" do
     let!(:user) {FactoryGirl.create(:user)}
     let(:volt){FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")}
 
     before do
             login_as(user)
-            assign_role!(user, :viewer,volt)
+            assign_role!(user, :editor ,volt)
             visit "/"
             click_link "My snipVolt"
     end

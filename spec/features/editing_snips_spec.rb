@@ -5,12 +5,12 @@ Capybara.register_driver :selenium do |app|
 end
 
 RSpec.feature "Users can edit snips make snip", js:true do
-    let!(:user) {FactoryGirl.create(:user)}
+    let(:author) { FactoryGirl.create(:user) }
     let(:volt) {FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")}
     before do
 
-            login_as(user)
-            assign_role!(user, :viewer, volt)
+            assign_role!(author, :editor, volt)
+            login_as(author)
             visit volt_path(volt)
 
             click_link "Add snip?"
@@ -37,7 +37,7 @@ RSpec.feature "Users can edit snips make snip", js:true do
             expect(page).to have_content "My snipVolt"
             click_link "My snipVolt"
             expect(page).to have_content "Snoopy is cool"
-    
+
     end
 end
 

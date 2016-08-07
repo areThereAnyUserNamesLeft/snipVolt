@@ -3,5 +3,20 @@
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :admin, label: "Create as admin?" %>
-    <%= f.button :submit, class: "btn btn-success pull-right btn-lg" %>
+    <header>
+        <h2>Roles</h2>
+    </header>
+    <table class="roles">
+        <% volts.each do |volt| %>
+        <tr>
+            <th>
+                <%= label_tag dom_id(volt), volt.name %>
+            </th>
+            <td>
+                <%= select_tag dom_id(volt), options_for_select(roles, user.role_on(volt)), name: "roles[#{volt.id}]", include_blank:true %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    <%= f.submit class: "btn btn-success pull-right btn-lg" %>
 <% end %>

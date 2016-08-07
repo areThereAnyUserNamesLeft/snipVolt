@@ -11,7 +11,7 @@ RSpec.feature "Users can view snips" do
 
     before do
             login_as(user)
-            assign_role!(user, :viewer,volt)
+            assign_role!(user, :editor,volt)
             visit "/"
             click_link "My snipVolt"
 

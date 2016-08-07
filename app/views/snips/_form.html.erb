@@ -62,7 +62,7 @@
 
 
     <div class="clearfix">
-        <% unless @snip.id == ''|| 'new' %>
+        <% unless @snip.id == ''|| :new %>
             <%= link_to [@volt, @snip], method: :delete, data: {confirm: "Delete me now, there is no turning back. OK?"}, :class => "pull-left btn btn-danger btn-lg" do %>
                 <i class="material-icons">delete</i> Delete snip?
             <% end %>

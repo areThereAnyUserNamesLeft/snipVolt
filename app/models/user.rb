@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    has_many :roles
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -16,5 +17,8 @@ class User < ActiveRecord::Base
     end
     def inactive_message
         archived_at.nil? ? super : :archived
+    end
+    def role_on(volt)
+        roles.find_by(volt_id: volt).try(:name)
     end
 end

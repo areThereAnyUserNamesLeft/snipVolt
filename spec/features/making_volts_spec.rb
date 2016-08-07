@@ -5,16 +5,13 @@ Capybara.register_driver :selenium do |app|
 end
 
  RSpec.feature "Users can create new volts" do
-
-     let(:user) {FactoryGirl.create(:user, :admin)}
      before do
-         login_as(user)
-         visit "/"
-         click_link "New volt?"
+         login_as(:user) {FactoryGirl.create(:user, :admin)}
      end
 
      scenario "with valid attributes" do
-
+         visit "/"
+         click_link "New volt?"
          fill_in "Name", with: "Hello whirled"
          fill_in "Project name", with: "My first program - a parody"
              select "MIT", :from => "Default licence"
