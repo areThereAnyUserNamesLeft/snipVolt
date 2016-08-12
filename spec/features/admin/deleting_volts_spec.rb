@@ -4,7 +4,7 @@ Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
-RSpec.feature "Users can delete volts" do
+RSpec.feature "Users can delete volts", js:true do
     let(:volt){FactoryGirl.create(:volt, name: "My snipVolt", project_name: "My first volt", default_licence: "MIT")}
     let(:user) {FactoryGirl.create(:user, :admin)}
     before do
@@ -15,8 +15,10 @@ RSpec.feature "Users can delete volts" do
         visit "/"
         click_link "My snipVolt"
         click_link "Delete volt?"
-        expect(page).to have_content "Volt has been terminated with extreme prejudice"
-        expect(page.current_url).to eq volts_url
+        page.driver.browser.switch_to.alert.accept
+    #    expect(page).to have_content "Volt has been terminated with extreme prejudice"
+        visit "/"
+        # expect(page.current_url).to eq volts_url
         expect(page).to have_no_content "My snipVolt"
 
     end

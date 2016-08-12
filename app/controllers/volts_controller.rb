@@ -1,5 +1,5 @@
 class VoltsController < ApplicationController
-    before_action :set_volt, only: [:show, :edit, :update, :destroy]
+    before_action :set_volt, only: [:create, :show, :edit, :update, :destroy]
 
     def index
         @volts = policy_scope(Volt)
@@ -7,9 +7,7 @@ class VoltsController < ApplicationController
     def show
         authorize @volt, :show?
     end
-    def new
-        @volt = Volt.new
-    end
+
     def  edit
         authorize @volt, :update?
     end
@@ -25,9 +23,10 @@ class VoltsController < ApplicationController
     end
     def destroy
 
+        @volt = Volt.find(params[:id])
+        authorize @volt, :destroy?
         @volt.destroy
-
-        flash[:notice] = "Volt has been terminated with extreme prejudice but the snips will live on"
+        flash[:notice] = "Volt has been terminated with extreme prejudice"
         redirect_to volts_path
     end
     def create

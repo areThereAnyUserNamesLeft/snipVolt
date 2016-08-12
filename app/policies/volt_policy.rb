@@ -8,10 +8,14 @@ class VoltPolicy < ApplicationPolicy
     end
   end
 
+
   def show?
       user.try(:admin?) || record.has_member?(user)
   end
   def update?
+      user.try(:admin?) || record.has_manager?(user)
+  end
+  def destroy?
       user.try(:admin?) || record.has_manager?(user)
   end
 end

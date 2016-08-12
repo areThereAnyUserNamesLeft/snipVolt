@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :volts do
       end
       resources :users do
+
           member do
               patch :archive
           end
