@@ -1,6 +1,6 @@
 == README
 
 I built this while learning Rails from "Rails 4 in Action"
-This kind of resembles the ticketee app from the book but I've taken made some drastic changes. 
+This kind of resembles the ticketee app from the book but I've taken made some drastic changes to make it suit my own purpose. 
 
 
